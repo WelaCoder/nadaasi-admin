@@ -1,0 +1,171 @@
+.contact-img {
+  height: 30vh;
+  background-image: url('../images/contact/01.PNG');
+  background-color: rgba(0, 0, 0, 0.5);
+  background-blend-mode: overlay;
+}
+
+.input-contact {
+  font-size: 1.2em;
+  height: 34px;
+}
+
+textarea {
+  border: none;
+  resize: none;
+}
+
+.shadow-contact {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-contact-card {
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+}
+
+.contact-h4 {
+  font-size: 1.5em;
+  font-family: FuturaBkBT;
+  text-decoration: underline;
+}
+
+.px-contact-4 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
+input[type='checkbox'] {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -o-appearance: none;
+  outline: none;
+  content: none;
+}
+
+.form-check-label {
+  margin-left: 0.75rem;
+}
+
+input[type='checkbox']:before {
+  font-family: 'FontAwesome';
+  content: '\f00c';
+  font-size: 12px;
+  padding: 2px;
+  color: transparent !important;
+  background: #fff;
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 1px solid black;
+  margin-right: 7px;
+  margin-bottom: 4px;
+}
+
+input[type='checkbox']:checked:before {
+  color: black !important;
+}
+
+@media screen and (max-width: 768px) {
+  .p-0-mb {
+    padding: 0 !important;
+  }
+  .mt-10 {
+    margin-top: 2rem;
+  }
+
+  .row-card {
+    flex-direction: row !important;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  .px-contact-4 {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .mb-3-sm {
+    margin-bottom: 1rem;
+  }
+
+  .contact-row {
+    flex-direction: row !important;
+  }
+  .px-4 {
+    padding: unset;
+  }
+  .shadow-contact-card {
+    box-shadow: none;
+  }
+  .contact {
+    margin: 0 !important;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 1) {
+  .logo {
+    width: 42vw;
+  }
+  .custom-height {
+    height: 77.7vh;
+  }
+  .mb-3-sm {
+    margin-bottom: 0px;
+  }
+  .wrapper {
+    background-position: 49% !important;
+  }
+
+  .philosopy-section {
+    padding: 0.4rem;
+  }
+  .col-md-8 {
+    max-width: 58.333333%;
+  }
+
+  .cart-details {
+    align-items: center !important;
+  }
+  .flex-col-mb {
+    flex-direction: row !important;
+  }
+
+  .banner .banner__text-box {
+    padding: 5px;
+  }
+
+  .about-p {
+    line-height: 1.4 !important;
+    width: unset;
+  }
+
+  .ipad-shop {
+    max-width: 100%;
+  }
+
+  .col-md-9 {
+    max-width: 100%;
+  }
+  .contact {
+    margin-left: 1rem !important;
+  }
+  .form-ipad {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .contact-h4 {
+    font-size: 1.1em !important;
+  }
+  .mb-5 {
+    margin-bottom: 2rem !important;
+  }
+  .footer {
+    display: grid;
+    grid-gap: 5%;
+    padding: 2% 3%;
+  }
+}

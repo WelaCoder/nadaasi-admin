@@ -1,0 +1,350 @@
+.section {
+  padding: 50px 0;
+}
+
+.section .section--textile {
+  align-items: center;
+  display: flex;
+  font-family: FuturaBkBT;
+  height: 65vh;
+}
+
+.section .section--textile .section__image-box {
+  flex-basis: 50%;
+  height: inherit;
+  padding-right: 90px;
+  position: relative;
+  text-align: right;
+}
+
+.section .section--textile .section__bg {
+  background-color: #d3d3d3;
+  bottom: 0;
+  height: 50vh;
+  position: absolute;
+  width: 100%;
+  z-index: -10;
+}
+
+.section .section--textile .section__image {
+  height: inherit;
+  padding-right: 25px;
+  width: auto;
+}
+
+.section .section--textile .section__text-box {
+  align-items: center;
+  display: flex;
+  flex-basis: 50%;
+  flex-direction: column;
+  height: inherit;
+  justify-content: center;
+  padding: 0 35px;
+  text-align: center;
+}
+
+/* Section Cards Start */
+
+.section .section--cards {
+  font-family: FuturaLtBT;
+}
+
+.section .section--cards .section__image {
+  width: 35px;
+}
+
+.section .section--cards .section__text-box {
+  margin-bottom: 52px;
+  text-align: center;
+}
+
+.section .section--cards .section__card {
+  background-color: #ffffff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  padding: 32px 0 20px 0;
+  margin: 0 16px;
+  text-align: center;
+}
+
+/* Section Cards End */
+
+/* Section Newsletter Start */
+
+.section .section--newsletter {
+  background-image: url(../images/home/n7.jpg);
+  background-size: cover;
+  background-position-x: 60%;
+  display: flex;
+  font-family: FuturaLtBT;
+  height: 75vh;
+}
+
+.section .section--newsletter .section__text-box {
+  flex-basis: 50%;
+  margin: auto;
+  margin-right: 0;
+  text-align: center;
+}
+
+.section .section--newsletter .section__text {
+  font-weight: 500;
+}
+
+.section .section--newsletter .section__text--big {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.section .section--newsletter .section__subscription-box {
+  align-items: stretch;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  padding: 0 25px;
+}
+
+.section .section--newsletter .section__subscription-box .section__input {
+  border: none;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  flex-grow: 1;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  padding: 12px 16px;
+}
+
+.section .section--newsletter .section__subscription-box .section__input:focus {
+  outline: none;
+}
+
+.section .section--newsletter .section__subscription-box .section__button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Section Newsletter End */
+
+/* Section Social Start */
+
+.social {
+  display: grid;
+  height: 98vh;
+  margin-top: 50px;
+  background-color: #1d1717;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.social-item-one {
+  background: no-repeat url(../images/home/untitled-7.jpg);
+  background-size: cover;
+  background-position: right -250px bottom;
+  grid-column: 1 / span 1;
+  grid-row: 1 / span 2;
+}
+
+.social-item-two {
+  background: no-repeat url(../images/home/n5.jpg);
+  background-size: cover;
+  background-position: top;
+  grid-column: 2 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.social-item-three {
+  background-color: #1d1717;
+  grid-column: 2 / span 1;
+  grid-row: 2 / span 1;
+  align-self: center;
+  justify-self: center;
+  font-family: FuturaLtBT;
+  font-size: 2em;
+}
+
+.social-item-three > p {
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.social-item-three > p > img {
+  padding: 0 25px;
+  transform: scale(2);
+}
+
+.social-item-four {
+  background: no-repeat url(../images/home/untitled-95.jpg);
+  background-size: cover;
+  background-position: right 0 bottom 0;
+  grid-column: 3 / span 1;
+  grid-row: 1 / span 1;
+}
+
+.social-item-five {
+  background: no-repeat url(../images/home/n2.jpg);
+  background-size: cover;
+  background-position: right -90px bottom 0;
+  grid-column: 3 / span 1;
+  grid-row: 2 / span 1;
+}
+
+.social-item-six {
+  background: no-repeat url(../images/home/untitled-20.jpg);
+  background-size: cover;
+  background-position: -100px;
+  grid-column: 4 / span 1;
+  grid-row: 1 / span 2;
+}
+
+/* Section Social End */
+
+/* Section Testimonial Start */
+
+.section .section--testimonial {
+  margin: 0 auto;
+  padding: 1.2rem;
+  width: 600px;
+}
+
+.section .section--testimonial .section__testimony {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.section .section--testimonial .section__image-box {
+  flex-basis: 200px;
+  height: 300px;
+  margin: 0 32px 0 0;
+}
+
+.section .section--testimonial .section__image {
+  border-radius: 4px;
+  height: inherit;
+  width: 200px;
+}
+
+.section .section--testimonial .section__text-box {
+  display: flex;
+  flex-grow: 1;
+}
+
+.section .section--testimonial .section__content {
+  font-family: FuturaLtBT;
+  margin: auto 0;
+  position: relative;
+}
+
+.section .section--testimonial .section__title {
+  font-family: FuturaMdBT;
+  font-size: 16px;
+}
+
+.section .section--testimonial .section__title::before,
+.section__content::after {
+  height: 40px;
+  width: 40px;
+}
+
+.section .section--testimonial .section__title::before {
+  content: '';
+  position: absolute;
+  background: url('../../assets/images/home/icons/asset1.svg');
+  background-size: 75%;
+  top: -40px;
+  background-repeat: no-repeat;
+  left: -8px;
+  z-index: 2;
+}
+
+.section__content::after {
+  content: '';
+  position: absolute;
+  background: url('../../assets/images/home/icons/asset1.svg');
+  background-size: 75%;
+  background-repeat: no-repeat;
+  right: 0;
+  z-index: 2;
+}
+
+.section .section--testimonial .section__quote {
+  font-size: 14px;
+}
+
+.section .section--testimonial .section__name {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 0px !important;
+}
+
+@media screen and (max-width: 768px) {
+  .section .section--testimonial {
+    margin: 0 auto;
+    padding: 1.2rem;
+    width: 100%;
+  }
+  .section .section--newsletter {
+    background-position: 30%;
+    background-color: rgba(0, 0, 0, 0.4);
+    background-blend-mode: overlay;
+    color: white;
+  }
+  .section .section--newsletter .section__text-box {
+    all: unset;
+    margin: auto;
+    text-align: center;
+  }
+  .section .section--testimonial .section__image {
+    width: 154px;
+  }
+
+  .section .section--testimonial .section__title::before {
+    top: -28px;
+  }
+
+  .section .section--testimonial .section__title::before,
+  .section__content::after {
+    height: 30px;
+    width: 30px;
+  }
+
+  .social {
+    grid-template-columns: 1fr 1fr;
+    height: 80vh;
+  }
+
+  .social-item-one {
+    grid-row: 1 / 1;
+    background-size: auto;
+    background-position: 70% 15%;
+  }
+
+  .social-item-two {
+    grid-column: 2 / span 1;
+    background-position: right 0 bottom 50%;
+  }
+  .social-item-three {
+    grid-column: 2 / span 1;
+    grid-row: 2 / span 1;
+  }
+
+  .social-item-four {
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+  }
+
+  .social-item-five,
+  .social-item-six {
+    display: none;
+  }
+
+  .home-btn {
+    background-color: transparent;
+  }
+  .section__subscription-box {
+    padding: 0 !important ;
+  }
+}
+
+/* Section Testimonial End */

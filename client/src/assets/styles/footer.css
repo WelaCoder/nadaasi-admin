@@ -1,0 +1,58 @@
+.footer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10%;
+  background-color: #1d1717;
+  color: #ffffff;
+  font-size: 0.7em;
+  padding: 2% 9%;
+  justify-items: end;
+}
+
+.footer > div > p {
+  color: #ffffff;
+}
+
+.footer-company {
+  font-family: FuturaLtBT;
+}
+
+.footer-company > p > img {
+  margin-right: 10px;
+  /* transform: translateY(8px); */
+}
+
+.footer-info {
+  font-family: FuturaLtBT;
+  justify-items: end;
+}
+
+.footer-personal {
+  font-family: FuturaLtBT;
+}
+
+.footer-personal > p > a,
+.footer-info > p > a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.mailto {
+  color: white;
+}
+
+.mailto:hover {
+  text-decoration: underline;
+  color: #fff;
+  text-decoration-color: #333;
+}
+.mailto > img {
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    display: block;
+    padding: 4% 8%;
+  }
+}

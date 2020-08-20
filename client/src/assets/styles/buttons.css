@@ -1,0 +1,26 @@
+.button {
+  border: 0;
+  border-radius: 4px;
+  display: inline-block;
+  font-size: 16px;
+  font-family: FuturaLtBT;
+  padding: 8px 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.button--three-sided {
+  border: 1.5px solid #444;
+  border-right: none;
+  font-family: OldStandardRegular;
+  padding: 8px 30px 8px 15px;
+}
+
+.button--dark {
+  background-color: #222;
+  color: #eee;
+}
+
+button:focus {
+  outline: none;
+}

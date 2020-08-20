@@ -1,0 +1,42 @@
+.carousel {
+  height: 90vh;
+  width: 100%;
+}
+
+.carousel .carousel__container {
+  height: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel .carousel__image {
+  display: block;
+  height: inherit;
+  object-fit: cover;
+  object-position: top;
+  top: 0;
+  width: 100%;
+}
+
+.carousel .carousel__text-box {
+  font-family: OldStandardRegular;
+  font-weight: normal;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 75%;
+}
+
+.carousel .carousel__subtitle {
+  margin-bottom: 35px;
+}
+
+@media screen and (max-width: 768px) {
+  .carousel .carousel__image {
+    object-position: 86%;
+  }
+  .carousel .carousel__text-box {
+    width: 100%;
+  }
+}

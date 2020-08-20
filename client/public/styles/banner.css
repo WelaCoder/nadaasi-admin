@@ -1,0 +1,236 @@
+.banner {
+  position: relative;
+  width: 100%;
+}
+
+.banner::after {
+  content: '';
+  clear: both;
+  display: block;
+}
+
+.banner .banner__image {
+  height: inherit;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.banner .banner__text-box {
+  height: auto;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50%;
+  z-index: 2;
+}
+
+.banner.banner--text-right .banner__image {
+  object-position: left;
+}
+
+.banner.banner--text-right .banner__text-box {
+  right: 25px;
+}
+
+.banner.banner--text-left .banner__image {
+  object-position: right;
+}
+
+.banner.banner--text-left .banner__text-box {
+  left: 25px;
+}
+
+.banner .banner__title {
+  font-family: FuturaLtBT;
+  font-size: 38px;
+  margin-bottom: 25px;
+}
+
+.banner .banner__subtitle {
+  font-family: FuturaLtBT;
+  font-size: 16px;
+}
+
+.shadow-shop {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail {
+  width: 250px;
+  height: 306px;
+}
+
+.filter-input {
+  height: 32px;
+}
+
+.form-control {
+  border-radius: 0 !important;
+}
+
+.shop-item-heading {
+  letter-spacing: 1.3px;
+  font-weight: bold;
+}
+
+.img-full {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px !important;
+}
+
+.page-item {
+  border: 0;
+  border-radius: 0 !important;
+}
+
+.page-item:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.page-link {
+  color: black;
+  border-radius: 2px;
+  font-family: FuturaLtBT;
+  border: 1px solid black !important;
+}
+
+.py-0-mb {
+  padding-top: 3rem !important;
+}
+
+.d-mb {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .banner .banner__text-box {
+    width: 100%;
+  }
+  .banner.banner--text-left .banner__text-box {
+    left: 0;
+  }
+
+  .px-mb-2 {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+
+  .w-100-mb {
+    width: 100% !important;
+  }
+
+  .banner .banner__text-box {
+    padding: 0 20px;
+  }
+
+  .ml-2-mb {
+    margin-left: 0.5rem !important;
+  }
+  .p-3-mb {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  .thumbnail {
+    width: 100%;
+    height: 60vh;
+  }
+  .col-reverse-mb {
+    flex-direction: column-reverse;
+  }
+  .py-0-mb {
+    padding-top: 0px !important;
+  }
+  .d-mb {
+    display: block;
+  }
+  .d-none-mb {
+    display: none !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-lg,
+  .modal-xl {
+    max-width: 100vw;
+  }
+  .modal-dialog {
+    margin: 1rem;
+  }
+
+  .banner .banner__text-box {
+    padding: 0 20px;
+  }
+  .fade {
+    padding: 0;
+  }
+
+  .modal-content {
+    background-color: transparent;
+    border: 0;
+  }
+}
+
+@media only screen and (min-device-width: 834px) and (max-device-width: 1112px) and (-webkit-min-device-pixel-ratio: 2) {
+  .carousel .carousel__image {
+    object-position: 85% !important;
+  }
+
+  .carousel .carousel__text-box {
+    width: 100%;
+  }
+  .home-btn {
+    background-color: unset !important;
+  }
+  .section .section--testimonial .section__image {
+    width: unset;
+  }
+  .social-item-one {
+    background-position: right -543px bottom !important;
+  }
+  .carousel .carousel__text-box {
+    width: 100% !important;
+  }
+
+  .social-item-five {
+    display: none;
+  }
+
+  .social {
+    height: 90vh !important;
+  }
+
+  .social-item-three,
+  .social-item-two {
+    grid-column: 2 / span 2 !important;
+  }
+
+  .social-item-six {
+    background-position: -416px !important;
+  }
+  .social-item-four {
+    display: none;
+  }
+
+  .wrapper {
+    height: 52vh !important;
+  }
+
+  .philosopy-section {
+    height: auto !important;
+  }
+
+  .carousel {
+    height: 100vh !important;
+  }
+  .philosopy-section {
+    height: auto;
+  }
+}

@@ -1,0 +1,205 @@
+.philosopy-section {
+  background-image: url('../images/about/Group-106.png');
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.about-p {
+  width: 80%;
+  text-align: left;
+  line-height: 2em;
+  font-size: 1.25em;
+  letter-spacing: 0.1em;
+}
+
+.wrapper {
+  display: grid;
+  height: 90vh;
+  background: url('../images/about/untitled-53.jpg');
+  background-color: rgba(0, 0, 0, 0.8);
+  background-blend-mode: overlay;
+  background-size: cover;
+
+  background-repeat: no-repeat;
+}
+
+.wrapper-item-about {
+  text-align: center;
+}
+
+.fabrics {
+  grid-template-columns: 1fr 1fr;
+  padding: 20px 5%;
+  display: grid;
+  padding: 20px 20%;
+  color: #fff;
+
+  position: relative;
+  background-size: cover;
+  background-position-y: center;
+}
+
+.fabric-section-one {
+  grid-column: 1 / span 2;
+  padding-right: 10%;
+  padding-left: 10%;
+}
+
+.fabric-section {
+  padding: 10px;
+}
+
+.fabric-section > h1 {
+  font-family: FuturaMdBT;
+  font-weight: lighter;
+  font-size: 1.8rem;
+}
+
+.fabric-section > img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 5px;
+}
+
+.fabrics-p {
+  font-family: FuturaLtBT;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 19.5px;
+}
+
+.fabric-section-two {
+  grid-column: 1 / span 1;
+  position: relative;
+}
+
+.fabric-section-three {
+  grid-column: 2 / span 1;
+  position: relative;
+}
+
+.fabric-section-four {
+  position: relative;
+  grid-column: 1 / span 1;
+}
+
+.fabric-section-two:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+  opacity: 0.8;
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+}
+
+.fabric-section-three:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+  opacity: 0.8;
+  border-bottom: 1px solid white;
+  border-left: 1px solid white;
+}
+
+.fabric-section-four:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 50%;
+  width: 100%;
+  opacity: 0.8;
+  border-right: 1px solid white;
+  border-top: 1px solid white;
+}
+
+.fabric-section-five {
+  grid-column: 2 / span 1;
+  position: relative;
+}
+
+.fabric-section-five:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 50%;
+  width: 100%;
+  opacity: 0.8;
+  border-left: 1px solid white;
+  border-top: 1px solid white;
+}
+
+.fabrics::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  opacity: 0.9;
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    height: 100%;
+  }
+  .philosopy-section {
+    height: 100%;
+    background-position: 16%;
+  }
+  .about-p {
+    width: unset;
+    letter-spacing: 0;
+  }
+  .fabrics {
+    grid-template-columns: 1fr;
+    padding: 20px 5%;
+  }
+  .fabric-section-one {
+    grid-column: 1 / span 2;
+    padding-right: 10%;
+    padding-left: 10%;
+  }
+  .fabric-section {
+    margin-top: 10px;
+    grid-column: 1 / -1;
+  }
+  .fabric-section-two:before {
+    width: 50%;
+    height: 100%;
+    left: 25%;
+    border-right: 0;
+    border-bottom: 2px solid white;
+  }
+  .fabric-section-three:before {
+    left: 25%;
+    width: 50%;
+    height: 100%;
+    border-left: 0;
+    border-bottom: 2px solid white;
+  }
+  .fabric-section-four:before {
+    width: 50%;
+    height: 100%;
+    left: 25%;
+    bottom: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 2px solid white;
+  }
+  .fabric-section-five:before {
+    left: 25%;
+    width: 50%;
+    height: 100%;
+    border-top: 0;
+    border-left: 0;
+  }
+}

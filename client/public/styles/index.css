@@ -1,0 +1,116 @@
+.cursor-pointer {
+  cursor: pointer;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.font-OldStandard {
+  font-family: OldStandardRegular;
+}
+
+.font-Futura-light {
+  font-family: FuturaLtBT;
+}
+
+.font-Futura-medium {
+  font-family: FuturaMdBT;
+}
+
+.font-Futura-bold {
+  font-family: FuturaBkBT;
+}
+
+.Toastify__toast-body {
+  font-family: FuturaLtBT;
+}
+
+.custom-height {
+  height: 56.3vh;
+}
+
+.btn-dark {
+  font-family: FuturaBkBT;
+  border-radius: 0;
+  letter-spacing: 2px;
+  background-color: black !important;
+}
+
+.form-check-input {
+  margin-top: 0.2rem;
+}
+
+.h-80vh {
+  height: 80vh;
+}
+
+.bg-transparent-dark {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hr-custom {
+  background-color: black;
+  height: 2px;
+  width: 50%;
+  margin-left: 2.5rem !important;
+}
+
+.img-full-shop {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px !important;
+}
+
+.order-5 > .react-multiple-carousel__arrow--left {
+  left: 0 !important;
+}
+
+.react-multiple-carousel__arrow--left {
+  left: 0px;
+}
+.react-multiple-carousel__arrow--right {
+  right: 0px;
+}
+
+div.col-md-12.my-3.order-5
+  > div
+  > button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {
+  top: 125px !important;
+}
+
+div.col-md-12.my-3.order-5
+  > div
+  > button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--right {
+  top: 125px !important;
+}
+
+.home-btn {
+  display: inline-block;
+  font-size: 15px;
+  padding: 8px 30px 8px 15px;
+  border: 1.5px solid black;
+  border-right: none;
+  position: relative;
+  color: black;
+  background-color: #efefef;
+  text-transform: uppercase;
+}
+
+.home-btn:after {
+  content: url('../../assets/images/home/icons/login.svg');
+  position: absolute;
+  width: 41.5px;
+  top: -1.5px;
+  right: -26px;
+}
+
+p {
+  margin-bottom: 0.85rem;
+}
+
+.bg-black {
+  background-color: #1d1717;
+}

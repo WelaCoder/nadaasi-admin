@@ -1,0 +1,62 @@
+.filters {
+  font-family: FuturaBkBT;
+}
+
+.filters .filters__item__shop:not(:last-child) {
+  margin-bottom: 22px;
+}
+
+.filters .filters__item {
+  background-color: #d8d8d8;
+  border-radius: 5px;
+}
+
+.filters .filters__item .filters__heading {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.filters .filters__item .filters__colors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.filters__item__shop {
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  padding: 22px 12px;
+}
+
+.filters .filters__item .filters__color {
+  border-radius: 4px;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin: 8px 4px;
+}
+
+.filters.filters__item--sort {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.filters.filters__item--sort .filters__sort {
+  align-items: stretch;
+  display: flex;
+  justify-content: space-between;
+}
+
+.rc-slider-handle {
+  border: 2px solid black;
+}
+
+.rc-slider-handle:focus,
+.rc-slider-handle:active,
+.rc-slider-handle:focus-within,
+.rc-slider-handle:hover {
+  color: black !important;
+  border: 2px solid black !important;
+  box-shadow: 0;
+}
