@@ -236,7 +236,7 @@ export const FindYourOwnStyle = () => {
 
   // const { isLoading } = useSelector((state) => state.product);
   const isLoading = false;
-
+  const [showModal, setShowModal] = useState(false);
   // useFetchProduct(currentFilter);
 
   return (
@@ -250,94 +250,104 @@ export const FindYourOwnStyle = () => {
         </>
       ) : (
         <>
-          <div class="shadow-shop cursor-pointer mt-3 mb-0 py-2 text-center text-uppercase  font-Futura-bold ">
+          <div
+            id={"findStyleBtn"}
+            class="shadow-shop cursor-pointer mt-3 mb-0 py-2 text-center text-uppercase  font-Futura-bold "
+            onClick={() => setShowModal(true)}
+          >
             <div>Find your own style </div>
           </div>
-          <div
-            role="dialog"
-            aria-modal="true"
-            class="fade font-Futura-light modal show"
-            tabindex="-1"
-            style={{ display: "block" }}
-          >
-            <div role="document" class="modal-dialog">
-              <div class="modal-content" style={{ backgroundColor: "#ffff" }}>
-                <div class="modal-header">
-                  <div class="modal-title h4">Find Your Style</div>
-                  <button type="button" class="close">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form class="">
-                    <div class="col-sm-12">
-                      <div class="d-flex align-items-center justify-content-center row">
-                        <div class="col-md-3">Bust</div>
-                        <div class="col-md-9">
-                          <div class="mt-2 mb-0 form-group">
-                            <input
-                              name="bust"
-                              placeholder="Enter Bust Size"
-                              type="number"
-                              class="form-control"
-                            />
+          {showModal && (
+            <div
+              role="dialog"
+              aria-modal="true"
+              class="fade font-Futura-light modal show"
+              tabindex="-1"
+              style={{ display: "block" }}
+            >
+              <div role="document" class="modal-dialog">
+                <div class="modal-content" style={{ backgroundColor: "#ffff" }}>
+                  <div class="modal-header">
+                    <div class="modal-title h4">Find Your Style</div>
+                    <button
+                      type="button"
+                      class="close"
+                      onClick={() => setShowModal(false)}
+                    >
+                      <span aria-hidden="true">×</span>
+                      <span class="sr-only">Close</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="">
+                      <div class="col-sm-12">
+                        <div class="d-flex align-items-center justify-content-center row">
+                          <div class="col-md-3">Bust</div>
+                          <div class="col-md-9">
+                            <div class="mt-2 mb-0 form-group">
+                              <input
+                                name="bust"
+                                placeholder="Enter Bust Size"
+                                type="number"
+                                class="form-control"
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="d-flex align-items-center justify-content-center row">
-                        <div class="col-md-3">Waist</div>
-                        <div class="col-md-9">
-                          <div class="mt-2 mb-0 form-group">
-                            <input
-                              name="waist"
-                              placeholder="Enter Waist Size"
-                              type="number"
-                              class="form-control"
-                            />
+                        <div class="d-flex align-items-center justify-content-center row">
+                          <div class="col-md-3">Waist</div>
+                          <div class="col-md-9">
+                            <div class="mt-2 mb-0 form-group">
+                              <input
+                                name="waist"
+                                placeholder="Enter Waist Size"
+                                type="number"
+                                class="form-control"
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="d-flex align-items-center justify-content-center row">
-                        <div class="col-md-3">High-Hip</div>
-                        <div class="col-md-9">
-                          <div class="mt-2 mb-0 form-group">
-                            <input
-                              name="highhip"
-                              placeholder="Enter High-hip Size"
-                              type="number"
-                              class="form-control"
-                            />
+                        <div class="d-flex align-items-center justify-content-center row">
+                          <div class="col-md-3">High-Hip</div>
+                          <div class="col-md-9">
+                            <div class="mt-2 mb-0 form-group">
+                              <input
+                                name="highhip"
+                                placeholder="Enter High-hip Size"
+                                type="number"
+                                class="form-control"
+                              />
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="d-flex align-items-center justify-content-center row">
-                        <div class="col-md-3">Hip</div>
-                        <div class="col-md-9">
-                          <div class="mt-2 mb-0 form-group">
-                            <input
-                              name="hip"
-                              placeholder="Enter Hip Size"
-                              type="number"
-                              class="form-control"
-                            />
+                        <div class="d-flex align-items-center justify-content-center row">
+                          <div class="col-md-3">Hip</div>
+                          <div class="col-md-9">
+                            <div class="mt-2 mb-0 form-group">
+                              <input
+                                name="hip"
+                                placeholder="Enter Hip Size"
+                                type="number"
+                                class="form-control"
+                              />
+                            </div>
                           </div>
                         </div>
+                        <div class="row">
+                          <button
+                            type="submit"
+                            class="mt-3 btn btn-dark btn-block"
+                          >
+                            Find Your Style
+                          </button>
+                        </div>
                       </div>
-                      <div class="row">
-                        <button
-                          type="submit"
-                          class="mt-3 btn btn-dark btn-block"
-                        >
-                          Find Your Style
-                        </button>
-                      </div>
-                    </div>
-                  </form>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </>
       )}
     </>

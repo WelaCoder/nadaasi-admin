@@ -1,6 +1,6 @@
 {
-    "MongoURL":"mongodb+srv://muhammmadmahad:mahadafaq1122@devconnector.lmkkd.mongodb.net/devConnector?retryWrites=true&w=majority",
-    "jwtsecret":"pakistan",
-    "clientId": "9967d4adecc15d39d8fd",
-    "clientSecret": "8d7c3d7ca73b80ffeefe0e8956357917b9f4fc18"
+  "MongoURL": "mongodb+srv://dbUser:dbUser@cluster0-zofxz.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtsecret": "pakistan",
+  "clientId": "9967d4adecc15d39d8fd",
+  "clientSecret": "8d7c3d7ca73b80ffeefe0e8956357917b9f4fc18"
 }

@@ -17,7 +17,11 @@ export const ShopItem = ({ product }) => {
           }}
           className="thumbnail cursor-pointer shadow-shop"
         >
-          <img className="img-full-shop" src={images[0]} alt="" />
+          <img
+            className="img-full-shop"
+            src={`/uploads/${images[0]}`}
+            alt="image not found"
+          />
         </div>
         <div className="product-info py-2">
           <ItemDetails>

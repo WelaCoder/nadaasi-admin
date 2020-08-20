@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
 const ProductSchema = new mongoose.Schema({
-  image: [
+  images: [
     {
       type: String,
       required: true,
     },
   ],
-  productname: {
+  name: {
     type: String,
     required: true,
   },
@@ -15,47 +15,49 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  dresstype: {
+  dressType: {
     type: String,
     required: true,
   },
-  dresssize: {
+  dressSize: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  dressColor: [
+    {
+      type: String,
+      required: true,
+    },
+  ],
+  closure: {
     type: String,
     required: true,
   },
-  dresscolor: {
+  fabric: {
     type: String,
     required: true,
   },
-  productdetails: {
-    closure: {
-      type: String,
-      required: true,
-    },
-    fabric: {
-      type: String,
-      required: true,
-    },
-    length: {
-      type: String,
-      required: true,
-    },
-    neckline: {
-      type: String,
-      required: true,
-    },
-    wasitlined: {
-      type: String,
-      required: true,
-    },
-    details: {
-      type: String,
-      required: true,
-    },
-    modelheightsize: {
-      type: String,
-      required: true,
-    },
+  length: {
+    type: String,
+    required: true,
+  },
+  neckLine: {
+    type: String,
+    required: true,
+  },
+  waistLine: {
+    type: String,
+    required: true,
+  },
+  details: {
+    type: String,
+    required: true,
+  },
+  modelHeightSize: {
+    type: String,
+    required: true,
   },
 });
-module.exports = Product = mongoose.model("productr", ProductSchema);
+module.exports = Product = mongoose.model("product", ProductSchema);

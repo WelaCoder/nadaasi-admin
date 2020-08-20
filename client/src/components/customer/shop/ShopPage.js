@@ -10,24 +10,19 @@ import Filters, {
 } from "./Filters";
 
 import BannerImage from "../../../assets/images/Shop/Group-108.png";
-
-import { ShopList } from "./shop-list";
+import { getProducts } from "../../../actions/appActions";
+import { connect } from "react-redux";
+import ShopList from "./shop-list";
 import { ShopFilter } from "./shop-filter";
 import { BreadCrumbs } from "../utils/breadcrumb";
 import { Pagination } from "./pagination";
-// import { useSelector, useDispatch } from "react-redux";
 import Skeleton from "react-loading-skeleton";
-// import { FETCH_PRODUCTS } from "../features/product/productSlice";
 
-const ShopePage = () => {
-  // const { isLoading } = useSelector((state) => state.product);
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   console.log("object");
-  //   dispatch(FETCH_PRODUCTS());
-  // }, [dispatch]);
+const ShopePage = ({ loadingProducts, getProducts }) => {
+  useEffect(() => {
+    getProducts();
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Container className="py-0-mb">
@@ -43,7 +38,7 @@ const ShopePage = () => {
         </Col>
         <Col sm={12} md={9}>
           <Row>
-            {false ? (
+            {loadingProducts ? (
               <div className="w-100">
                 <Skeleton count={1} height="300px" />
               </div>
@@ -65,7 +60,7 @@ const ShopePage = () => {
             </Filters>
           </Col>
           <Row className="mt-4 p-3-mb">
-            {false ? (
+            {loadingProducts ? (
               <div className="w-100">
                 <Skeleton count={1} height="40px" />
               </div>
@@ -82,5 +77,7 @@ const ShopePage = () => {
     </Container>
   );
 };
-
-export default ShopePage;
+const mapStateToProps = (state) => ({
+  loadingProducts: state.app.loadingProducts,
+});
+export default connect(mapStateToProps, { getProducts })(ShopePage);

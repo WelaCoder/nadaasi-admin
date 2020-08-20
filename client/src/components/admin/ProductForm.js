@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 
 import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
-// import { useForm } from "react-hook-form";
+import { SketchPicker } from "react-color";
 import { useDropzone } from "react-dropzone";
 import Toggle from "react-toggle";
 import axios from "axios";
@@ -12,26 +12,26 @@ import { connect } from "react-redux";
 import { addProduct } from "../../actions/appActions";
 const ProductForm = ({ addProduct }) => {
   const [images, setImages] = useState([]);
-  const [dressType, setDressType] = useState();
-  const [dressSize, setDressSize] = useState([]);
-  const [dressColor, setDressColor] = useState([]);
+  const [showPicker, setShowPicker] = useState(false);
+  const [currentColor, setcurrentColor] = useState("#ffffff");
   const [inStock, setInStock] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const [data, setdata] = useState({
     images: [],
     name: "",
-    price: 0,
+    price: null,
     dressType: "",
-    dressSize: "",
-    dressColor: "",
+    dressSize: [],
+    dressColor: [],
     fabric: "",
     closure: "",
-    length: 0,
-    neckline: 0,
-    waistline: 0,
+    length: null,
+    neckLine: null,
+    waistLine: null,
     details: "",
-    modelHeightSize: 0,
+    modelHeightSize: null,
+    inStock: true,
   });
 
   const [placeholder, setPlaceHolder] = useState([]);
@@ -54,6 +54,7 @@ const ProductForm = ({ addProduct }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
     // setIsLoading(true);
     // const {
     //   price,
@@ -101,7 +102,7 @@ const ProductForm = ({ addProduct }) => {
     //     });
     //   });
     const product = new FormData();
-    images.map((file) => data.append("images", file));
+    images.map((file) => product.append("images", file));
     product.append("price", data.price);
     product.append("name", data.name);
     product.append("rating", "5");
@@ -113,9 +114,10 @@ const ProductForm = ({ addProduct }) => {
     product.append("fabric", data.fabric);
     product.append("closure", data.closure);
     product.append("length", data.length);
-    product.append("neckline", data.neckline);
-    product.append("waistline", data.waistline);
+    product.append("neckline", data.neckLine);
+    product.append("waistline", data.waistLine);
     product.append("modelHeightSize", data.modelHeightSize);
+
     console.log("submitted");
     console.log(data);
     addProduct(product);
@@ -137,7 +139,10 @@ const ProductForm = ({ addProduct }) => {
               id="123"
               defaultChecked={inStock}
               onChange={(e) => {
-                setInStock(e.target.checked);
+                setdata({
+                  ...data,
+                  inStock: e.target.checked,
+                });
               }}
             />
           </div>
@@ -147,7 +152,11 @@ const ProductForm = ({ addProduct }) => {
           <div {...getRootProps()}>
             <input {...getInputProps()} />
             {isDragActive ? (
-              <p>Drop the files here ...</p>
+              <div className="bg-white my-3 d-flex justify-content-center border shadow-sm py-5 mb-2">
+                <span className="text-info font-weight-bold">
+                  Drop the files here ...
+                </span>
+              </div>
             ) : (
               <div className="bg-white my-3 d-flex justify-content-center border shadow-sm py-5 mb-2">
                 <span className="text-info font-weight-bold">
@@ -208,9 +217,6 @@ const ProductForm = ({ addProduct }) => {
                   ...data,
                   dressType: e.value.toString(),
                 });
-
-                console.log(data);
-                console.log(e.value);
               }}
               options={OPTIONS.dressTypeOptions}
             />
@@ -227,13 +233,93 @@ const ProductForm = ({ addProduct }) => {
               options={OPTIONS.dressSizeOptions}
               onChange={(values) => {
                 values !== null &&
-                  setDressSize(values.map(({ value }) => value));
+                  setdata({
+                    ...data,
+                    // dressColor: "value",
+                    dressSize: values.map((value) => value.value),
+                  });
               }}
             />
           </div>
         </div>
         <div className="col-md-6">
           <div className="form-group">
+            <div className="row">
+              <div className="col-5">
+                <a
+                  id={"addColorBtn"}
+                  href={"#!"}
+                  className="btn btn-light"
+                  onClick={() => {
+                    setShowPicker(!showPicker);
+                    if (showPicker) {
+                      setdata({
+                        ...data,
+                        dressColor: [...data.dressColor, currentColor],
+                      });
+                    }
+                  }}
+                >
+                  Add Color
+                </a>
+              </div>
+              <div className="col-7">
+                <div className="d-block">
+                  <div
+                    className="row"
+                    style={{
+                      // height: "27px",
+                      backgroundColor: "white",
+                      borderRadius: "20px",
+                      // padding: "20px",
+                      // width: "30px",
+                    }}
+                  >
+                    {data.dressColor.map((color) => (
+                      <div
+                        className="col-lg-2 col-md-2 p-0"
+                        onClick={() => {
+                          setdata({
+                            ...data,
+                            dressColor: data.dressColor.filter(
+                              (value) => value != color
+                            ),
+                          });
+                        }}
+                      >
+                        <div
+                          className={"my-2  "}
+                          style={{
+                            height: "27px",
+                            color: "blue",
+                            borderRadius: "7px",
+                            // width: "30px",
+                            marginLeft: "5px",
+                            marginRight: "5px",
+                            backgroundColor: color,
+                            border:
+                              color == "#ffffff" ? "1px solid #f1f1f1" : "",
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {showPicker && (
+              <SketchPicker
+                color={currentColor}
+                onChangeComplete={(val) => {
+                  console.log(val);
+
+                  setcurrentColor(val.hex);
+                }}
+              />
+            )}
+          </div>
+          {/* <div className="form-group">
             <CreatableSelect
               isMulti
               placeholder="Select Dress Color.."
@@ -243,7 +329,7 @@ const ProductForm = ({ addProduct }) => {
                   setDressColor(values.map(({ value }) => value));
               }}
             />
-          </div>
+          </div> */}
         </div>
         <div className="col-md-12">
           <div className="d-flex justify-content-between">

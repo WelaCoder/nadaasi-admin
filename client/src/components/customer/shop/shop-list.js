@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
 import { Row } from "react-bootstrap";
 import { ShopItem } from "./shop-item";
+import { connect } from "react-redux";
 // import { useSelector, useDispatch } from 'react-redux';
 // import { selectProduct } from '../../features/product/productSlice';
 import Skeleton from "react-loading-skeleton";
 
-export const ShopList = () => {
+const ShopList = ({ loadingProducts, products }) => {
   // const {
-  //   product: { products, isLoading },
+  //   product: { products, loadingProducts },
   // } = useSelector(selectProduct);
-  const products = [];
-  const isLoading = false;
+
   // useEffect(() => {
   //   window.scrollTo(0, 0);
   // }, [products]);
   return (
     <>
-      {isLoading ? (
+      {loadingProducts ? (
         <Row className="justify-content-between mt-3 p-0 p-3-mb">
           <div className="thumbnail cursor-pointer shadow-shop">
             <Skeleton count={1} height="100%" />
@@ -30,9 +30,9 @@ export const ShopList = () => {
         </Row>
       ) : (
         <Row className="justify-content-between mt-3 p-0 p-3-mb">
-          {products?.products?.length > 0 ? (
+          {products.length > 0 ? (
             <>
-              {products?.products?.map((product) => (
+              {products.map((product) => (
                 <ShopItem key={product._id} product={product} />
               ))}{" "}
             </>
@@ -51,3 +51,8 @@ export const ShopList = () => {
     </>
   );
 };
+const mapStateToProps = (state) => ({
+  loadingProducts: state.app.loadingProducts,
+  products: state.app.products,
+});
+export default connect(mapStateToProps)(ShopList);
