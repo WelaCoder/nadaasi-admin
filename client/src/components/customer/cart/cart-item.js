@@ -1,13 +1,14 @@
 import React from "react";
 
 import { CartHeading, CartItemName } from "./cart-heading";
-import { CartDelete } from "./cart-delete";
-import { CartQuantity } from "./cart-quantity";
+import CartDelete from "./cart-delete";
+import CartQuantity from "./cart-quantity";
 import { CartImage } from "./cart-image";
 import { Price } from "../utils/details";
 
 export const CartItem = ({ item }) => {
-  const { images, name, price, _id, quantity } = item;
+  const { images, name, price } = item.product;
+  const { quantity, _id } = item;
   console.log(item);
   return (
     <div className="cart-item d-flex py-3">

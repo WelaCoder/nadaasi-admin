@@ -6,8 +6,6 @@ import menu from "../../../assets/images/home/icons/menu.svg";
 import Select from "react-select";
 import { useState } from "react";
 
-import { useSetFilter } from "./Filters";
-
 export const ShopFilter = () => {
   // const {
   //   product: {
@@ -16,8 +14,6 @@ export const ShopFilter = () => {
   // } = useSelector(selectProduct);
 
   const [sortFilter, setSortFilter] = useState({});
-
-  useSetFilter(sortFilter);
 
   const sortOptions = [
     {

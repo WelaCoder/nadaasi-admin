@@ -7,6 +7,8 @@ import {
   SET_TOAST,
   LOAD_CART,
   DELETE_ITEM_FROM_CART,
+  UPDATE_QUANTITY,
+  SET_FILTER,
 } from "../actions/types";
 
 const initialState = {
@@ -18,12 +20,36 @@ const initialState = {
     size: null,
     quantity: 1,
   },
+
   cart: null,
   currentProduct: null,
   toastMessage: null,
+  filters: {
+    size: null,
+    dressType: null,
+    price: {
+      min: 10,
+      max: 3000,
+    },
+  },
 };
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SET_FILTER:
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          ...action.payload,
+        },
+      };
+    case UPDATE_QUANTITY:
+      return {
+        ...state,
+        cart: state.cart.map((e) =>
+          e._id == action.payload._id ? action.payload : e
+        ),
+      };
     case DELETE_ITEM_FROM_CART:
       return {
         ...state,

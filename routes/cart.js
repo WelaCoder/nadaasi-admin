@@ -60,4 +60,17 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+
+router.post("/:id/updateQuantity", async (req, res) => {
+  try {
+    let cartItem = await CartItem.findById(req.params.id);
+    cartItem.quantity = req.body.quantity;
+    console.log(cartItem);
+    await cartItem.save();
+    res.json({ cartItem });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 module.exports = router;

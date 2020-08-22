@@ -1,11 +1,11 @@
 import React from "react";
 import { BreadCrumbs } from "../utils/breadcrumb";
 import { CartHeading } from "./cart-heading";
-import { CartList } from "./cart-list";
+import CartList from "./cart-list";
 import { Coupon } from "./coupon";
 import { Container, Row, Col } from "react-bootstrap";
 import { NewsLetter } from "./newsletter";
-import { CartTotal } from "./cart-total";
+import CartTotal from "./cart-total";
 import { useLocation } from "react-router-dom";
 const CartPage = () => {
   const { pathname } = useLocation();

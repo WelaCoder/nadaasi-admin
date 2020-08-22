@@ -2,12 +2,7 @@ import React, { useEffect } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 
 import Banner from "./Banner";
-import Filters, {
-  RangeFilter,
-  DressType,
-  FilterSizes,
-  FindYourOwnStyle,
-} from "./Filters";
+import Filters from "./Filters";
 
 import BannerImage from "../../../assets/images/Shop/Group-108.png";
 import { getProducts, loadCart } from "../../../actions/appActions";
@@ -30,12 +25,7 @@ const ShopePage = ({ loadingProducts, getProducts, loadCart }) => {
       <BreadCrumbs />
       <Row className="col-reverse-mb">
         <Col sm={12} md={3} className="d-none-mb">
-          <Filters>
-            <DressType />
-            <FilterSizes />
-            <RangeFilter />
-            <FindYourOwnStyle />
-          </Filters>
+          <Filters></Filters>
         </Col>
         <Col sm={12} md={9}>
           <Row>
@@ -54,11 +44,7 @@ const ShopePage = ({ loadingProducts, getProducts, loadCart }) => {
             )}
           </Row>
           <Col sm={12} md={3} className="d-mb mt-4 ipad-shop">
-            <Filters>
-              <DressType />
-              <FilterSizes />
-              <RangeFilter />
-            </Filters>
+            <Filters></Filters>
           </Col>
           <Row className="mt-4 p-3-mb">
             {loadingProducts ? (

@@ -10,6 +10,8 @@ import {
   ADD_TO_CART,
   SET_TOAST,
   LOAD_CART,
+  UPDATE_QUANTITY,
+  SET_FILTER,
 } from "./types";
 
 export const addProduct = (data) => async (dispatch) => {
@@ -135,6 +137,28 @@ export const loadCart = () => async (dispatch) => {
   }
 };
 
+export const updateCount = (cartId, count) => async (dispatch) => {
+  try {
+    console.log(cartId);
+    const res = await axios.post(
+      "/api/cart/" + cartId + "/updateQuantity",
+      { quantity: count },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    dispatch({
+      type: UPDATE_QUANTITY,
+      payload: res.data.cartItem,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const deleteItemFromCart = (id) => async (dispatch) => {
   try {
     const res = await axios.delete("/api/cart/" + id);
@@ -153,6 +177,28 @@ export const setToast = (toastMessage) => async (dispatch) => {
     dispatch({
       type: SET_TOAST,
       payload: toastMessage,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const setFilters = (filters) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SET_FILTER,
+      payload: filters,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const filterProducts = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: SET_FILTER,
+      payload: null,
     });
   } catch (error) {
     console.log(error);

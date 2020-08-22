@@ -7,3 +7,5 @@ export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_ITEM_FROM_CART = "DELETE_ITEM_FROM_CART";
 export const SET_TOAST = "SET_TOAST";
 export const LOAD_CART = "LOAD_CART";
+export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
+export const SET_FILTER = "SET_FILTER";
