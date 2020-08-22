@@ -1,3 +1,9 @@
 export const Add_PRODUCT = "Add_PRODUCT";
 export const SET_LOADING = "SET_LOADING";
 export const GET_PRODUCTS = "GET_PRODUCTS";
+export const SET_CURRENT_PRODUCT = "SET_CURRENT_PRODUCT";
+export const SET_CHOOSEN_PRODUCT = "SET_CHOOSEN_PRODUCT";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_ITEM_FROM_CART = "DELETE_ITEM_FROM_CART";
+export const SET_TOAST = "SET_TOAST";
+export const LOAD_CART = "LOAD_CART";

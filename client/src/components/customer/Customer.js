@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HomePage from "./home/homepage";
 import ContactPage from "./contact/ContactPage";
 import AboutPage from "./about/AboutPage";
@@ -12,10 +12,27 @@ import {
   Redirect,
   BrowserRouter as Router,
 } from "react-router-dom";
+import { connect } from "react-redux";
+import ProductShow from "./shop/productShow/ProductShow";
+import { ToastContainer, toast } from "react-toastify";
+import { loadCart } from "../../actions/appActions";
 
-const Customer = () => {
+const Customer = ({ toastMessage, loadCart }) => {
+  loadCart();
+  useEffect(() => {
+    if (toastMessage != null) {
+      if (toastMessage.type == "error") {
+        toast.error(toastMessage.message);
+      } else if (toastMessage.type == "success") {
+        toast.success(toastMessage.message);
+      } else if (toastMessage.type == "info") {
+        toast.info(toastMessage.message);
+      }
+    }
+  }, [toastMessage]);
   return (
     <div>
+      <ToastContainer />
       <MyNavbar />
       <Switch>
         <Route exact path="/" component={HomePage} />
@@ -23,6 +40,8 @@ const Customer = () => {
         <Route exact path="/about" component={AboutPage} />
         <Route exact path="/cart" component={CartPage} />
         <Route exact path="/shop" component={ShopPage} />
+
+        <Route exact path="/shop-item/:id" component={ProductShow} />
         <Route path="*" component={() => <Redirect to="/" />} />
       </Switch>
       <Footer />
@@ -30,4 +49,7 @@ const Customer = () => {
   );
 };
 
-export default Customer;
+const mapStateToProps = (state) => ({
+  toastMessage: state.app.toastMessage,
+});
+export default connect(mapStateToProps, { loadCart })(Customer);

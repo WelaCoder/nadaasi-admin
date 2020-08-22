@@ -17,19 +17,19 @@ export const BreadCrumbs = ({ currentLink, currentLinkAddress }) => {
 
   return (
     <nav aria-label="breadcrumb ">
-      <ol class="breadcrumb  mb-2 bg-transparent font-Futura-light p-0">
-        <li class="breadcrumb-item">
+      <ol className="breadcrumb  mb-2 bg-transparent font-Futura-light p-0">
+        <li className="breadcrumb-item">
           <Link className="text-muted" to="/">
             Home
           </Link>
         </li>
-        <li class="breadcrumb-item">
+        <li className="breadcrumb-item">
           <Link className={`${active}`} to="/shop">
             Shop
           </Link>
         </li>
         {currentLink && (
-          <li class="breadcrumb-item" aria-current="page">
+          <li className="breadcrumb-item" aria-current="page">
             <Link
               to={currentLinkAddress}
               className="text-dark font-weight-bold"

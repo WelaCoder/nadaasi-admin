@@ -10,7 +10,7 @@ import Filters, {
 } from "./Filters";
 
 import BannerImage from "../../../assets/images/Shop/Group-108.png";
-import { getProducts } from "../../../actions/appActions";
+import { getProducts, loadCart } from "../../../actions/appActions";
 import { connect } from "react-redux";
 import ShopList from "./shop-list";
 import { ShopFilter } from "./shop-filter";
@@ -18,9 +18,10 @@ import { BreadCrumbs } from "../utils/breadcrumb";
 import { Pagination } from "./pagination";
 import Skeleton from "react-loading-skeleton";
 
-const ShopePage = ({ loadingProducts, getProducts }) => {
+const ShopePage = ({ loadingProducts, getProducts, loadCart }) => {
   useEffect(() => {
     getProducts();
+    loadCart();
     // eslint-disable-next-line
   }, []);
 
@@ -80,4 +81,4 @@ const ShopePage = ({ loadingProducts, getProducts }) => {
 const mapStateToProps = (state) => ({
   loadingProducts: state.app.loadingProducts,
 });
-export default connect(mapStateToProps, { getProducts })(ShopePage);
+export default connect(mapStateToProps, { getProducts, loadCart })(ShopePage);

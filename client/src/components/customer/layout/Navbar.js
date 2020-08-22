@@ -12,12 +12,11 @@ import logo from "../../../assets/images/nadaasi/Nadaasioriginal.png";
 import UserLogo from "../../../assets/images/home/icons/user.svg";
 import SearchLogo from "../../../assets/images/home/icons/search.svg";
 import CartLogo from "../../../assets/images/home/icons/shopping-cart.svg";
-import { useCart } from "react-use-cart";
 // import { useDispatch, useSelector } from "react-redux";
 
 // import { logout, selectUser, isLoggedIn } from "../../features/user/userSlice";
-
-const MyNavbar = () => {
+import { connect } from "react-redux";
+const MyNavbar = ({ cart }) => {
   //   const { totalUniqueItems } = useCart();
   //   const dispatch = useDispatch();
   //   const { isAuthenticated } = useSelector(selectUser);
@@ -92,7 +91,7 @@ const MyNavbar = () => {
               <img alt="Cart" src={CartLogo} width="20" />
               <span className="badge">
                 {
-                  3
+                  cart != null && cart.length
                   //   totalUniqueItems
                 }
               </span>
@@ -103,5 +102,7 @@ const MyNavbar = () => {
     </Navbar>
   );
 };
-
-export default MyNavbar;
+const mapStateToProps = (state) => ({
+  cart: state.app.cart,
+});
+export default connect(mapStateToProps)(MyNavbar);

@@ -9,6 +9,7 @@ connectDB();
 app.use(express.json({ extended: true }));
 app.use("/api/user", require("./routes/user"));
 app.use("/api/product", require("./routes/product"));
+app.use("/api/cart", require("./routes/cart"));
 
 app.listen(PORT, () => {
   console.log(`Your Server is runing on ${PORT} post `);

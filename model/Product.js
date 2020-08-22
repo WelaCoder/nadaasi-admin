@@ -59,5 +59,9 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  rating: {
+    type: Number,
+    required: true,
+  },
 });
 module.exports = Product = mongoose.model("product", ProductSchema);

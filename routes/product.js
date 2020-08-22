@@ -22,6 +22,9 @@ router.post("/", upload.array("images", 3), async (req, res) => {
       dressType: req.body.dressType,
       price: req.body.price,
       name: req.body.name,
+      dressColor: req.body.color.split(","),
+      dressSize: req.body.size.split(","),
+      rating: 5,
     });
   } catch (error) {
     console.log(error.message);
