@@ -6,12 +6,16 @@ const { check, validationResult } = require("express-validator");
 
 const User = require("../model/User");
 
-const route = express.Router();
+const auth = require("../middleware/auth");
+const verify = require("../middleware/check");
 
-route.post(
+const router = express.Router();
+
+router.post(
   "/signup",
   [
-    check("name", "Name is required").not().isEmpty(),
+    check("firstname", "Firstname is required").not().isEmpty(),
+    check("lastname", "Lastname is required").not().isEmpty(),
     check("email", "Email is required").isEmail(),
     check("password", "Password is required").isLength({ min: 6 }),
   ],
@@ -49,8 +53,9 @@ route.post(
       // return jwt token
 
       payload = {
-        users: {
+        user: {
           id: user.id,
+          admin: false,
         },
       };
       jwt.sign(
@@ -72,7 +77,7 @@ route.post(
     }
   }
 );
-route.post(
+router.post(
   "/login",
   [
     check("email", "Email is required").isEmail(),
@@ -99,6 +104,7 @@ route.post(
       payload = {
         user: {
           id: user.id,
+          admin: false,
         },
       };
       jwt.sign(
@@ -120,5 +126,13 @@ route.post(
     }
   }
 );
-
-module.exports = route;
+router.get("/", auth, verify.notAdmin, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    res.json(user);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ msg: "Server Error" });
+  }
+});
+module.exports = router;

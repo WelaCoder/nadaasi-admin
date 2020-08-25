@@ -1,20 +1,10 @@
 import React from "react";
 import Filter from "../../../assets/images/Shop/icons/display.png";
 import menu from "../../../assets/images/home/icons/menu.svg";
-// import { useSelector } from 'react-redux';
-// import { selectProduct } from '../../features/product/productSlice';
 import Select from "react-select";
-import { useState } from "react";
-
-export const ShopFilter = () => {
-  // const {
-  //   product: {
-  //     products: { count, skip, products },
-  //   },
-  // } = useSelector(selectProduct);
-
-  const [sortFilter, setSortFilter] = useState({});
-
+import { connect } from "react-redux";
+import { sortProducts } from "../../../actions/appActions";
+const ShopFilter = ({ sortProducts }) => {
   const sortOptions = [
     {
       label: "Highest To Lowest",
@@ -27,10 +17,7 @@ export const ShopFilter = () => {
   ];
 
   const onChangeSort = (option) => {
-    setSortFilter({
-      value: option.value,
-      type: "sortFilter",
-    });
+    sortProducts(option.value);
   };
 
   return (
@@ -97,3 +84,5 @@ export const ShopFilter = () => {
     </div>
   );
 };
+
+export default connect(null, { sortProducts })(ShopFilter);

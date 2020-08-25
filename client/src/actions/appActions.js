@@ -12,6 +12,9 @@ import {
   LOAD_CART,
   UPDATE_QUANTITY,
   SET_FILTER,
+  FILTER_PRODUCTS,
+  SORT_PRODUCTS,
+  SET_CURRENT_PAGE,
 } from "./types";
 
 export const addProduct = (data) => async (dispatch) => {
@@ -189,6 +192,9 @@ export const setFilters = (filters) => async (dispatch) => {
       type: SET_FILTER,
       payload: filters,
     });
+    if (filters.price == null) {
+      dispatch(filterProducts());
+    }
   } catch (error) {
     console.log(error);
   }
@@ -197,8 +203,30 @@ export const setFilters = (filters) => async (dispatch) => {
 export const filterProducts = () => async (dispatch) => {
   try {
     dispatch({
-      type: SET_FILTER,
-      payload: null,
+      type: FILTER_PRODUCTS,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const sortProducts = (order) => async (dispatch) => {
+  try {
+    dispatch({
+      type: SORT_PRODUCTS,
+      payload: order,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const setCurrentPage = (page) => async (dispatch) => {
+  try {
+    console.log(page);
+    dispatch({
+      type: SET_CURRENT_PAGE,
+      payload: page,
     });
   } catch (error) {
     console.log(error);

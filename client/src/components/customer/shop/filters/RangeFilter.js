@@ -1,10 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setFilters } from "../../../../actions/appActions";
+import { setFilters, filterProducts } from "../../../../actions/appActions";
 import Skeleton from "react-loading-skeleton";
 import { Range } from "rc-slider";
 import "rc-slider/assets/index.css";
-const RangeFilter = ({ loadingProducts, setFilters, filters }) => {
+const RangeFilter = ({
+  loadingProducts,
+  setFilters,
+  filters,
+  filterProducts,
+}) => {
   return (
     <>
       {loadingProducts ? (
@@ -39,7 +44,9 @@ const RangeFilter = ({ loadingProducts, setFilters, filters }) => {
             <div className="d-flex justify-content-between align-items-end">
               <button
                 onClick={
-                  () => {}
+                  () => {
+                    filterProducts();
+                  }
                   //   setFilters({
                   //     type: "priceFilter",
                   //     value: range,
@@ -63,4 +70,6 @@ const mapStateToProps = (state) => ({
   loadingProducts: state.app.loadingProducts,
   filters: state.app.filters,
 });
-export default connect(mapStateToProps, { setFilters })(RangeFilter);
+export default connect(mapStateToProps, { setFilters, filterProducts })(
+  RangeFilter
+);

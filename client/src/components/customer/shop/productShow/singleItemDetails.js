@@ -9,12 +9,14 @@ import Measurements from "./measurements";
 import Skeleton from "react-loading-skeleton";
 import { connect } from "react-redux";
 import { addToCart, deleteItemFromCart } from "../../../../actions/appActions";
+import { toast } from "react-toastify";
 const SingleItemDetails = ({
   currentProduct,
   addToCart,
   choosenProduct,
   cart,
   deleteItemFromCart,
+  isAuthenticated,
 }) => {
   if (currentProduct == null)
     return (
@@ -100,7 +102,11 @@ const SingleItemDetails = ({
           <div className=" mt-5">
             <button
               onClick={() => {
-                addToCart(choosenProduct);
+                if (isAuthenticated) {
+                  addToCart(choosenProduct);
+                } else {
+                  toast.error("You must be logged in first...");
+                }
               }}
               className="btn btn-dark btn-block"
             >
@@ -118,6 +124,7 @@ const SingleItemDetails = ({
 const mapStateToProps = (state) => ({
   currentProduct: state.app.currentProduct,
   cart: state.app.cart,
+  isAuthenticated: state.app.isAuthenticated,
   choosenProduct: state.app.choosenProduct,
 });
 export default connect(mapStateToProps, { addToCart, deleteItemFromCart })(

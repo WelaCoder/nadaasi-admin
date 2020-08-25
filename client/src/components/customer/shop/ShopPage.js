@@ -8,9 +8,9 @@ import BannerImage from "../../../assets/images/Shop/Group-108.png";
 import { getProducts, loadCart } from "../../../actions/appActions";
 import { connect } from "react-redux";
 import ShopList from "./shop-list";
-import { ShopFilter } from "./shop-filter";
+import ShopFilter from "./shop-filter";
 import { BreadCrumbs } from "../utils/breadcrumb";
-import { Pagination } from "./pagination";
+import Pagination from "./pagination";
 import Skeleton from "react-loading-skeleton";
 
 const ShopePage = ({ loadingProducts, getProducts, loadCart }) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Visa from "../../../assets/images/Cart/banks/visa.svg";
 import Aktia from "../../../assets/images/Cart/banks/aktia.svg";
 import Danske from "../../../assets/images/Cart/banks/danske-bank.svg";
@@ -9,53 +9,10 @@ import Spankki from "../../../assets/images/Cart/banks/s-pankki.svg";
 import Saastopankki from "../../../assets/images/Cart/banks/saastopankki.svg";
 import Alandsbanken from "../../../assets/images/Cart/banks/alandsbanken.svg";
 import Klarna from "../../../assets/images/Cart/banks/klarna_logo_black.png";
-// import { useCart } from 'react-use-cart';
-// import { useSelector } from 'react-redux';
-// import { selectProduct } from '../../features/product/productSlice';
-// import { useForm } from 'react-hook-form';
+import { createSession } from "../../../actions/payment";
 import axios from "axios";
 import { connect } from "react-redux";
-const CartTotal = ({ cart }) => {
-  // const { cartTotal, items } = useCart();
-
-  // const { register, handleSubmit } = useForm();
-
-  // const { product } = useSelector(selectProduct);
-
-  // const onSubmit = (data) => {
-  //   const { country, city, postalCode, email, message } = data;
-
-  //   const totalAmount = product?.coupon?.isActive
-  //     ? cartTotal - product.coupon.value
-  //     : cartTotal;
-
-  //   const appliedCoupon = product?.coupon?.isActive ? product.coupon._id : {};
-
-  //   const order = {
-  //     address: {
-  //       country,
-  //       city,
-  //       postalCode,
-  //     },
-  //     message,
-  //     email,
-  //     subTotal: cartTotal,
-  //     orderItem: items,
-  //     total: totalAmount,
-  //     appliedCoupon,
-  //   };
-
-  //   console.log(order);
-
-  //   axios
-  //     .post("/order", order)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.response);
-  //     });
-  // };
+const CartTotal = ({ cart, createSession, user }) => {
   const total = () => {
     var total = 0;
     if (cart != null && cart.length != 0) {
@@ -66,15 +23,96 @@ const CartTotal = ({ cart }) => {
     }
     return total;
   };
+
+  const [order, setOrder] = useState({
+    country: {
+      name: "Finland",
+      code: "FI",
+    },
+    town: "",
+    postalCode: "",
+    email: "",
+    message: "",
+    tax: 0,
+    vat: 24,
+  });
+
+  const onChange = (e) => {
+    setOrder({
+      ...order,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const onClick = (e) => {
+    e.preventDefault();
+    console.log(order);
+    if (user) {
+      createSession(order, user);
+    }
+  };
+  const countryName = (code) => {
+    switch (code) {
+      case "FI":
+        return "Finland";
+      case "SE":
+        return "Sweden";
+      case "NO":
+        return "Norway";
+      case "DE":
+        return "Germay";
+      case "NL":
+        return "Netherland";
+      case "AT":
+        return "Austria";
+      case "CH":
+        return "Switzerland";
+      case "US":
+        return "United States of America";
+      case "UK":
+        return "United Kingdom";
+      case "DK":
+        return "Denmark";
+
+      default:
+        return "";
+    }
+  };
+  // const countryVat = (code) => {
+  //   switch (code) {
+  //     case "FI":
+  //       return 24;
+  //     case "SE":
+  //       return 25;
+  //     case "NO":
+  //       return 25;
+  //     case "DE":
+  //       return 19;
+  //     case "NL":
+  //       return 21;
+  //     case "AT":
+  //       return 20;
+  //     case "CH":
+  //       return 7.7;
+  //     case "US":
+  //       return 0;
+  //     case "UK":
+  //       return 20;
+  //     case "DK":
+  //       return 25;
+  //     default:
+  //       return 0;
+  //   }
+  // };
   return (
     <form
       // onSubmit={handleSubmit(onSubmit)}
       className="col-md-12 font-Futura-bold letter-spacing-cart mb-2 "
+      onSubmit={onClick}
     >
       <div className="row-wrap">
         <div className="row mb-3">
           <div className="col-md-6 p-0">SUBTOTAL</div>
-          <div className="col-md-6 p-0">$ {total()}</div>
+          <div className="col-md-6 p-0">€ {total()}</div>
         </div>
         <div className="row mb-3">
           <div className="col-md-6 p-0">SHIPPING</div>
@@ -89,19 +127,36 @@ const CartTotal = ({ cart }) => {
                 name="country"
                 className="form-control filter-input"
                 // ref={register}
+                onChange={(e) => {
+                  console.log(e.target.value);
+                  setOrder({
+                    ...order,
+                    country: {
+                      name: countryName(e.target.value),
+                      code: e.target.value,
+                    },
+                  });
+                }}
               >
-                <option value="Finland">Finland</option>
-                <option value="Sweden">Sweden</option>
-                <option value="Latavia">Latavia</option>
-                <option value="Lutininia">Lutininia</option>
-                <option value="Estonia">Estonia</option>
+                <option value="FI">Finland</option>
+                <option value="SE">Sweden</option>
+                <option value="NO">Norway</option>
+                <option value="DE">Germany</option>
+                <option value="NL">NETHERLAND</option>
+                <option value="AT">AUSTRIA</option>
+                <option value="CH">Switzerland</option>
+                <option value="DK">Denmark</option>
+                <option value="UK">United Kingdom</option>
+                <option value="US">United States</option>
               </select>
             </div>
             <div className="form-group">
               <input
-                name="city"
+                name="town"
                 className="form-control filter-input"
                 placeholder="Town / City"
+                required
+                onChange={onChange}
                 // ref={register}
               />
             </div>
@@ -110,6 +165,8 @@ const CartTotal = ({ cart }) => {
                 name="postalCode"
                 className="form-control filter-input"
                 placeholder="Postal Code"
+                required
+                onChange={onChange}
                 // ref={register}
               />
             </div>
@@ -119,6 +176,8 @@ const CartTotal = ({ cart }) => {
                 name="email"
                 className="form-control filter-input"
                 placeholder="Email Address"
+                required
+                onChange={onChange}
                 // ref={register}
               />
             </div>
@@ -134,6 +193,7 @@ const CartTotal = ({ cart }) => {
         <textarea
           name="message"
           rows="4"
+          onChange={onChange}
           // ref={register}
           className="w-100 shadow-shop mt-2"
         ></textarea>
@@ -143,13 +203,13 @@ const CartTotal = ({ cart }) => {
         <div className="row no-wrap">
           <div className="col-md-6 p-0">SUBTOTAL</div>
           <div className="col-md-6 d-flex justify-content-end p-0 ">
-            $ {total()}
+            € {total()}
           </div>
         </div>
         <div className="row no-wrap">
           <div className="col-md-6 mt-2  p-0">VAT</div>
           <div className="col-md-6 mt-2 d-flex justify-content-end p-0 ">
-            $ 119
+            €{total() * (24 / 100)}
           </div>
         </div>
 
@@ -160,7 +220,7 @@ const CartTotal = ({ cart }) => {
               <>
                 <div className="col-md-6 mt-2 p-0">COUPON </div>
                 <div className="col-md-6 mt-2 d-flex justify-content-end p-0 ">
-                  - ${" "}
+                  - €{" "}
                   {
                     // product.coupon.value
                   }
@@ -172,19 +232,22 @@ const CartTotal = ({ cart }) => {
       </div>
       <div className="row ">
         <div className="col-md-12 d-flex p-0 justify-content-end">
-          ${" "}
+          €{" "}
           {
             // product?.coupon?.isActive
             //   ? cartTotal - product.coupon.value
             //   : cartTotal
-            total()
+            total() + total() * (24 / 100)
           }
         </div>
       </div>
       <div className="row mt-3 ">
         <button
+          disabled={cart == null || cart.length == 0}
           type="submit"
-          className="btn text-uppercase btn-dark btn-block letter-spacing-none"
+          className={`btn text-uppercase btn-dark btn-block letter-spacing-none ${
+            cart == null && "disabled"
+          } ${cart && cart.length == 0 && "disabled"}`}
         >
           Proceed to checkout
         </button>
@@ -215,5 +278,6 @@ const CartTotal = ({ cart }) => {
 };
 const mapStateToProps = (state) => ({
   cart: state.app.cart,
+  user: state.app.user,
 });
-export default connect(mapStateToProps)(CartTotal);
+export default connect(mapStateToProps, { createSession })(CartTotal);

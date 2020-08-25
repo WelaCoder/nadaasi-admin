@@ -9,3 +9,35 @@ export const SET_TOAST = "SET_TOAST";
 export const LOAD_CART = "LOAD_CART";
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 export const SET_FILTER = "SET_FILTER";
+export const FILTER_PRODUCTS = "FILTER_PRODUCTS";
+export const SORT_PRODUCTS = "SORT_PRODUCTS";
+export const AUTH_CUSTOMER_SUCCESS = "AUTH_CUSTOMER_SUCCESS";
+export const AUTH_CUSTOMER_FAILURE = "AUTH_CUSTOMER_FAILURE";
+export const AUTH_CUSTOMER_LOGOUT = "AUTH_CUSTOMER_LOGOUT";
+// Load User
+export const LOAD_USER = "LOAD_USER";
+//auth admin
+export const LOGIN_ADMIN = "LOGIN_ADMIN";
+export const ADMIN_LOGOUT = "ADMIN_LOGOUT";
+export const ADMIN_LOGIN_ERROR = "ADMIN_LOGIN_ERROR";
+// load admin
+export const LOAD_ADMIN = "LOAD_ADMIN";
+//coupons
+export const CREATE_COUPON = "CREATE_COUPON";
+export const COUPON_ERROR = "COUPON_ERROR";
+export const UPDATE_COUPON = "UPDATE_COUPON";
+export const GET_ALL_COUPON = "GET_ALL_COUPON";
+// create feedback
+export const CREATE_FEEDBACK = "CREATE_FEEDBACK";
+export const CREATE_FEEDBACK_ERROR = "CREATE_FEEDBACK_ERROR";
+export const UPDATE_FEEDBACK = "UPDATE_FEEDBACK";
+export const UPDATE_FEEDBACK_ERROR = "UPDATE_FEEDBACK_ERROR";
+export const GET_FEEDBACK = "GET_FEEDBACK";
+export const GET_FEEDBACK_ERROR = "GET_FEEDBACK_ERROR";
+// Order
+export const CREATE_PAYMENT_SESSION = "CREATE_PAYMENT_SESSION";
+export const LOAD_ORDERS = "LOAD_ORDERS";
+export const GET_ORDER = "GET_ORDER";
+export const SET_CURRENT_ORDER = "SET_CURRENT_ORDER";
+// pagination
+export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";

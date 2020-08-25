@@ -32,8 +32,9 @@ const DressSizeFilter = ({ loadingProducts, setFilters }) => {
     //   type: "size",
     //   value: sizes,
     // });
+
     setFilters({
-      size: sizes,
+      size: sizes.length == 0 ? null : sizes,
     });
   };
   return (

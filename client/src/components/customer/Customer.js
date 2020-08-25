@@ -12,13 +12,19 @@ import {
   Redirect,
   BrowserRouter as Router,
 } from "react-router-dom";
+import Login from "./Login/Login";
+import SignUp from "./signup/SignUp";
 import { connect } from "react-redux";
 import ProductShow from "./shop/productShow/ProductShow";
 import { ToastContainer, toast } from "react-toastify";
 import { loadCart } from "../../actions/appActions";
-
-const Customer = ({ toastMessage, loadCart }) => {
-  loadCart();
+import { LoadUser } from "../../actions/auth";
+import { loadOrders } from "../../actions/orders";
+import setAuthToken from "../../utils/setAuthToken";
+import CustomerRoute from "../../utils/CustomerRoute";
+import Profile from "./profile/Profile";
+import OrderShow from "./profile/OrderShow/OrderShow";
+const Customer = ({ toastMessage, loadCart, auth, LoadUser, loadOrders }) => {
   useEffect(() => {
     if (toastMessage != null) {
       if (toastMessage.type == "error") {
@@ -30,6 +36,18 @@ const Customer = ({ toastMessage, loadCart }) => {
       }
     }
   }, [toastMessage]);
+  useEffect(() => {
+    if (localStorage.token && !auth.isAdmin) {
+      setAuthToken(localStorage.token);
+    }
+    LoadUser();
+  }, []);
+  useEffect(() => {
+    if (auth.user) {
+      loadCart();
+      loadOrders();
+    }
+  }, [auth.user]);
   return (
     <div>
       <ToastContainer />
@@ -38,9 +56,13 @@ const Customer = ({ toastMessage, loadCart }) => {
         <Route exact path="/" component={HomePage} />
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/about" component={AboutPage} />
-        <Route exact path="/cart" component={CartPage} />
-        <Route exact path="/shop" component={ShopPage} />
 
+        <CustomerRoute exact path="/cart" component={CartPage} />
+        <Route exact path="/shop" component={ShopPage} />
+        <Route exact path="/user" component={Profile} />
+        <Route exact path="/order/:id" component={OrderShow} />
+        <Route exact path="/user/sign-in" component={Login} />
+        <Route exact path="/user/sign-up" component={SignUp} />
         <Route exact path="/shop-item/:id" component={ProductShow} />
         <Route path="*" component={() => <Redirect to="/" />} />
       </Switch>
@@ -51,5 +73,8 @@ const Customer = ({ toastMessage, loadCart }) => {
 
 const mapStateToProps = (state) => ({
   toastMessage: state.app.toastMessage,
+  auth: state.app,
 });
-export default connect(mapStateToProps, { loadCart })(Customer);
+export default connect(mapStateToProps, { loadCart, LoadUser, loadOrders })(
+  Customer
+);

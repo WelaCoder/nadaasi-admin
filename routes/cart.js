@@ -2,15 +2,19 @@ const router = require("express").Router();
 const upload = require("../upload");
 const CartItem = require("../model/CartItem");
 const Product = require("../model/Product");
+const User = require("../model/User");
+const auth = require("../middleware/auth");
 
-router.post("/", upload.array("images", 3), async (req, res) => {
+router.post("/", upload.array("images", 3), auth, async (req, res) => {
   try {
     var images = [];
     let product = await Product.findById(req.body._id);
     let cartItem = await CartItem.create({
+      user: req.user.id,
       color: req.body.color,
       size: req.body.size,
       product,
+      details: product,
       quantity: Number(req.body.quantity),
       neck: Number(req.body.neck),
       overBust: Number(req.body.overBust),
@@ -40,9 +44,12 @@ router.post("/", upload.array("images", 3), async (req, res) => {
     res.status(500).json({ msg: "internal server error" });
   }
 });
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
-    let cartItems = await CartItem.find({});
+    let cartItems = await CartItem.find({ user: req.user.id }).populate(
+      "product"
+    );
+    // console.log(cartItems);
     res.json({ cartItems });
   } catch (error) {
     console.log(error);
@@ -63,7 +70,7 @@ router.delete("/:id", async (req, res) => {
 
 router.post("/:id/updateQuantity", async (req, res) => {
   try {
-    let cartItem = await CartItem.findById(req.params.id);
+    let cartItem = await CartItem.findById(req.params.id).populate("product");
     cartItem.quantity = req.body.quantity;
     console.log(cartItem);
     await cartItem.save();

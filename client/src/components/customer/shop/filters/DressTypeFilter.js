@@ -6,6 +6,10 @@ import Select from "react-select";
 const DressTypeFilter = ({ loadingProducts, setFilters }) => {
   const dressTypeOptions = [
     {
+      label: "All",
+      value: null,
+    },
+    {
       label: "Casual",
       value: "casual",
     },
@@ -32,7 +36,7 @@ const DressTypeFilter = ({ loadingProducts, setFilters }) => {
             onChange={(option) => {
               console.log(option);
               setFilters({
-                dressType: option?.value || "all",
+                dressType: option?.value,
               });
             }}
           />

@@ -12,11 +12,16 @@ import logo from "../../../assets/images/nadaasi/Nadaasioriginal.png";
 import UserLogo from "../../../assets/images/home/icons/user.svg";
 import SearchLogo from "../../../assets/images/home/icons/search.svg";
 import CartLogo from "../../../assets/images/home/icons/shopping-cart.svg";
+
+import { LogOut } from "../../../actions/auth";
+
+import { connect } from "react-redux";
+// import { useCart } from "react-use-cart";
 // import { useDispatch, useSelector } from "react-redux";
 
 // import { logout, selectUser, isLoggedIn } from "../../features/user/userSlice";
-import { connect } from "react-redux";
-const MyNavbar = ({ cart }) => {
+
+const MyNavbar = ({ LogOut, auth: { isAuthenticated }, cart }) => {
   //   const { totalUniqueItems } = useCart();
   //   const dispatch = useDispatch();
   //   const { isAuthenticated } = useSelector(selectUser);
@@ -51,15 +56,15 @@ const MyNavbar = ({ cart }) => {
 
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="tools">
-          {true ? (
-            <span
+          {isAuthenticated ? (
+            <butthon
               className="tool-item"
               onClick={() => {
-                // dispatch(logout());
+                LogOut();
               }}
             >
-              Logout
-            </span>
+              {"logout"}
+            </butthon>
           ) : (
             <NavLink to="/user/sign-in">
               <span className="tool-item">
@@ -103,6 +108,7 @@ const MyNavbar = ({ cart }) => {
   );
 };
 const mapStateToProps = (state) => ({
+  auth: state.app,
   cart: state.app.cart,
 });
-export default connect(mapStateToProps)(MyNavbar);
+export default connect(mapStateToProps, { LogOut })(MyNavbar);
