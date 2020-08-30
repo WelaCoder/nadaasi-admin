@@ -1,93 +1,138 @@
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import axios from "axios";
+// import axios from "axios";
 // import { useIsAdmin } from '../hooks/useIsAdmin';
 // import { setAuthorizationToken } from '../helpers/utils';
+import { connect } from 'react-redux';
 
-export const AddCoupon = () => {
+import { createCoupon } from '../../../actions/coupon';
+const AddCoupon =  ({createCoupon , coupon : {loading} }) => {
   // useIsAdmin();
+  const [ coupondata, setcoupondata ] = useState({
+    name: '', 
+    code: '',
+    value: '', 
+    discountType: '',
+    isActive : null
+  })
+  const { name, code, value, discountType, isActive } = coupondata;
+  // const { register, handleSubmit, errors, reset } = useForm();
+  const [isLoading, setisLoading] = useState(false);
 
-  const { register, handleSubmit, errors, reset } = useForm();
-  const [isLoading, setIsLoading] = useState(false);
-
-  const onSubmit = (data) => {
-    setIsLoading(true);
-    // setAuthorizationToken();
-    axios
-      .post("/coupon", data)
-      .then((res) => {
-        setIsLoading(false);
-        toast.success(res.data.Message, {
-          autoClose: "1500",
-        });
-        reset();
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        toast(err.response.data.Message, {
-          autoClose: "1500",
-        });
-      });
-  };
+  // const onSubmit = (data) => {
+  //   setIsLoading(true);
+  //   // setAuthorizationToken();
+  //   axios
+  //     .post("/coupon", data)
+  //     .then((res) => {
+  //       setIsLoading(false);
+  //       toast.success(res.data.Message, {
+  //         autoClose: "1500",
+  //       });
+  //       reset();
+  //     })
+  //     .catch((err) => {
+  //       setIsLoading(false);
+  //       toast(err.response.data.Message, {
+  //         autoClose: "1500",
+  //       });
+  //     });
+  // };
+  const onChange = (e) => {
+    setcoupondata({
+      ...coupondata,
+      [ e.target.name] : e.target.value
+    })
+  }
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setisLoading(true);
+    // console.log({ name, code, value, discountType , isActive })
+    createCoupon({ name, code, value, discountType , isActive });
+    setTimeout(() => {
+      setisLoading(false)
+    }, 700);
+    
+  }
   return (
     <div className="container mt-4">
       <h3 className="text-info font-weight-bold py-2 border-top border-bottom ">
         Add Coupon
       </h3>
-      <form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
+      <form className="mt-4" onSubmit={onSubmit}>
         <div className="form-group">
           <input
             type="text"
             name="name"
+            value={ name }
+            onChange={onChange}
             className="form-control"
             placeholder="Enter Coupon Name.."
-            ref={register({ required: true })}
+            // ref={register({ required: true })}
           />
 
-          {errors.name && (
+          {/* {name == '' && (
             <div className="font-weight-bold text-danger mt-1 mb-0">
               Name is Required.
-            </div>
-          )}
+            </div> */}
+          {/* )} */}
         </div>
         <div className="form-group">
           <input
             type="text"
             name="code"
             className="form-control"
+            value={ code }
+            onChange={onChange}
             placeholder="Enter Coupon Code.."
-            ref={register({ required: true })}
+            // ref={register({ required: true })}
           />
           <small className="text-muted">
             Please Enter A Unique Coupon Code.
           </small>
-          {errors.code && (
+          {/* {code == '' && (
             <div className="font-weight-bold text-danger mt-1 mb-0">
               Code is Required.
-            </div>
-          )}
+            </div> */}
+          {/* )} */}
         </div>
+      
+          <div className="form-group">
+          <select className='form-control' name="discountType" value={discountType} onChange={onChange}  >
+            <option value="0">* Select Discount Type</option>
+            <option value="PI">PI</option>
+            <option value="DI">DI </option>
+            <option value="DST">DST </option>
+            <option value="DT">DT</option>
+            <option value="Free Shipping">Free Shipping</option>
+          </select>
+      
+          </div>
         <div className="form-group">
           <input
-            type="text"
+            type="number"
             name="value"
             className="form-control"
+            value={ value }
+            onChange={onChange}
             placeholder="Enter Discount Value.."
-            ref={register({ required: true })}
+            // ref={register({ required: true })}
           />
-          {errors.value && (
+          {/* {value == ' ' && (
             <div className="font-weight-bold text-danger mt-1 mb-0">
               Discount Value is Required.
             </div>
-          )}
+          )} */}
         </div>
         <div className="form-group">
           <select
             name="isActive"
             defaultValue=""
             className="form-control"
-            ref={register({ required: true })}
+            value={ isActive }
+            onChange={onChange}
+            // ref={register({ required: true })}
           >
             <option value="" disabled>
               Please Selected Coupon Status
@@ -95,25 +140,29 @@ export const AddCoupon = () => {
             <option value="true">Active</option>
             <option value="false">InActive</option>
           </select>
-          {errors.isActive && (
+          {/* {isActive == '' && (
             <div className="font-weight-bold text-danger mt-1 mb-0">
               Coupon Status is Required.
             </div>
-          )}
+          )} */}
         </div>
         <button
           type="submit"
           className="btn btn-block btn-dark mb-2"
-          disabled={isLoading}
+          disabled={loading}
         >
           <span
-            className={isLoading ? "mr-2 spinner-border spinner-border-sm" : ""}
+            className={loading ? "mr-2 spinner-border spinner-border-sm" : ""}
             role="status"
             aria-hidden="true"
           ></span>
-          {isLoading ? "Uploading..." : "Upload"}
+          {loading ? "Uploading..." : "Upload"}
         </button>
       </form>
     </div>
   );
 };
+const mapStateToProps = state => ({
+  coupon : state.coupon
+})
+export default connect(mapStateToProps , {createCoupon})(AddCoupon);

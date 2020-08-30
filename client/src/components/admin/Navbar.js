@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import Logo from "../../assets/images/logo-white.png";
 import { NavItem, NavLink } from "reactstrap";
-import { NavLink as RRNavLink } from "react-router-dom";
+import { NavLink as RRNavLink , Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { ProSidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import Toggle from "react-toggle";
 import FeatherIcon from "feather-icons-react";
+import { connect } from "react-redux";
+import {adminLogOut} from '../../actions/adminauth'
 
-const Appbar = () => {
+const Appbar = ({adminLogOut}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const history = useHistory();
 
-  const isLoggedIn = true;
+  
 
   return (
     <div className="h-100vh">
-      {isLoggedIn ? (
         <ProSidebar collapsed={isOpen}>
           <Menu>
             <div className="ml-3">
@@ -30,7 +30,6 @@ const Appbar = () => {
 
             <MenuItem>
               <NavLink
-                exact={true}
                 activeClassName="text-dark font-weight-bold "
                 tag={RRNavLink}
                 to="/admin/coupons"
@@ -48,7 +47,7 @@ const Appbar = () => {
               <MenuItem>
                 {" "}
                 <NavLink
-                  exact={true}
+                  
                   activeClassName="text-light font-weight-bold "
                   tag={RRNavLink}
                   to="/admin/coupons"
@@ -58,7 +57,7 @@ const Appbar = () => {
               </MenuItem>
               <MenuItem>
                 <NavLink
-                  exact={true}
+                  
                   activeClassName="text-light font-weight-bold "
                   tag={RRNavLink}
                   to="/admin/add-coupon"
@@ -70,7 +69,7 @@ const Appbar = () => {
             <SubMenu title="Products" icon={<FeatherIcon icon="package" />}>
               <MenuItem>
                 <NavLink
-                  exact={true}
+                  
                   activeClassName="text-light font-weight-bold "
                   tag={RRNavLink}
                   to="/admin/upload-product"
@@ -80,7 +79,7 @@ const Appbar = () => {
               </MenuItem>
               <MenuItem>
                 <NavLink
-                  exact={true}
+                  
                   activeClassName="text-light font-weight-bold "
                   tag={RRNavLink}
                   to="/admin/products"
@@ -91,7 +90,7 @@ const Appbar = () => {
             </SubMenu>
             <MenuItem icon={<FeatherIcon icon="truck" />}>
               <NavLink
-                exact={true}
+                
                 activeClassName="text-light font-weight-bold "
                 tag={RRNavLink}
                 to="/admin/orders"
@@ -101,22 +100,31 @@ const Appbar = () => {
             </MenuItem>
             <MenuItem icon={<FeatherIcon icon="clipboard" />}>
               <NavLink
-                exact={true}
+                
                 activeClassName="text-light font-weight-bold "
                 tag={RRNavLink}
                 to="/admin/feedback"
               >
-                Feedback
+              Feedback
+              </NavLink>
+          </MenuItem>
+          <MenuItem icon={<FeatherIcon icon="file-minus" />}>
+              <NavLink
+                
+                activeClassName="text-light font-weight-bold "
+                tag={RRNavLink}
+                to="/admin/merchant"
+              >
+              Return Request
               </NavLink>
             </MenuItem>
             <MenuItem icon={<FeatherIcon icon="log-out" />}>
               <NavItem>
                 <NavLink
                   onClick={() => {
-                    localStorage.clear();
-                    history.push("/");
+                  adminLogOut();
                   }}
-                  exact={true}
+                  
                 >
                   Log out
                 </NavLink>
@@ -124,11 +132,8 @@ const Appbar = () => {
             </MenuItem>
           </Menu>
         </ProSidebar>
-      ) : (
-        ""
-      )}
     </div>
   );
 };
 
-export default Appbar;
+export default connect(null , {adminLogOut})(Appbar);

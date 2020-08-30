@@ -5,6 +5,7 @@ const KlarnaV3 = require("@crystallize/node-klarna/v3");
 const Product = require("../model/Product");
 const Order = require("../model/Order");
 const auth = require("../middleware/auth");
+const verify = require("../middleware/verify")
 
 // router.post("/", upload.array("images", 3), async (req, res) => {
 //   try {
@@ -65,4 +66,15 @@ router.get("/:id", auth, async (req, res) => {
     res.status(500).json({ message: "Internal Server Error" });
   }
 });
+router.get('/admin', auth, verify.isAdmin, async (req, res) => {
+    try {
+      const order = await Order.find()
+      console.log(order)
+      res.json(order);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).send('Server error');
+    }
+});
+
 module.exports = router;

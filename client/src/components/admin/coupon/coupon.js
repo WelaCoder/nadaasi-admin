@@ -1,46 +1,80 @@
+import React, {Fragment} from 'react';
 import Toggle from 'react-toggle';
-import React from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import {updateCoupon} from '../../../actions/coupon'
 
-export const Coupon = ({ coupon }) => {
-  const { _id, name, code, value, isActive } = coupon;
-
+const Coupon = ({coupon , updateCoupon}) => {
+  const { _id, name, code, value, discountType ,isActive } = coupon;
   const handleChange = (_id, status) => {
     const payload = {
       isActive: status,
     };
-    axios
-      .patch(`/coupon/${_id}`, payload)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err.response.data));
+    updateCoupon(_id, payload);
   };
 
   return (
-    <div className='col-md-12 mb-3 mt-2 list-group-item d-flex text-muted justify-content-between shadow-sm py-2'>
-      <div className=''>
-        <h5 className='py-1 text-capitalize'>{name}</h5>
-        <h6 className='mb-0'>
-          <span className='tag text-info font-weight-bold'>{code}</span>
-        </h6>
-      </div>
-      <div>
-        <h5 className='py-1 text-muted '>
-          Discount :{' '}
-          <span className='small text-success font-weight-bold'>${value}</span>
-        </h5>
-        <div className='d-flex justify-content-between align-items-center mb-0'>
-          Active
-          <small>
-            <Toggle
-              id={_id}
-              defaultChecked={isActive}
-              onChange={() => {
-                handleChange(_id, !isActive);
-              }}
-            />
+    <Fragment>
+
+      <div
+        className="d-flex list-group-item py-3  justify-content-between   shadow-sm  mb-2">
+        <div className="col-md-2">
+          <small className="d-flex flex-column">
+            <span className="text-muted border-bottom py-1">Name
+            </span>
+            <span className=" text-capitalize py-1">
+              {name}
+            </span>
+          </small>
+        </div>
+        <div className="col-md-2">
+          <small className="d-flex flex-column ">
+            <span className="text-muted border-bottom py-1 ">
+              Coupon Code
+            </span>
+            <span className="text-capitalize py-1">
+              {code}
+            </span>
+          </small>
+        </div>
+        <div className="col-md-3">
+          <small className="d-flex flex-column ">
+            <span className="text-muted border-bottom py-1">
+              Coupon Type
+            </span>
+            <span className=" py-1">
+              {discountType}
+            </span>
+          </small>
+        </div>
+        <div className="col-md-2">
+          <small className="d-flex flex-column ">
+            <span className="text-muted py-1 border-bottom">
+              Price
+            </span>
+            <span className="py-1">
+              { '$' }{value}
+            </span>
+          </small>
+        </div>
+        <div className="col-md-1">
+          <small className="d-flex flex-column">
+            <span className="text-muted border-bottom py-1 ">
+               IsActive
+            </span>
+            <span className="py-1" > 
+              <Toggle
+                id={_id}
+                defaultChecked={isActive}
+                onChange={() => {
+                  handleChange(_id, !isActive);
+                }}
+              />
+            </span>
           </small>
         </div>
       </div>
-    </div>
-  );
-};
+    </Fragment>
+  )
+}
+
+export default connect(null, { updateCoupon })(Coupon);

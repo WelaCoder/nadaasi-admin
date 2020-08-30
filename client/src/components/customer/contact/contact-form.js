@@ -1,31 +1,42 @@
 import React, { useState } from "react";
 // import { useForm } from "react-hook-form";
-import axios from "axios";
-import { toast } from "react-toastify";
-import { toastConfig } from "../../../config/toastConfig";
+// import { toast } from "react-toastify";
+// import { toastConfig } from "../../../config/toastConfig";
+import { connect } from "react-redux";
+import { createFeedback} from '../../../actions/feedback';
+import { set } from "mongoose";
 
-export const ContactForm = () => {
+const ContactForm = ({createFeedback}) => {
   // const { register, handleSubmit, reset } = useForm();
-  const [isLoading, setIsLoading] = useState(false);
+  const [ isLoading, setIsLoading ] = useState(false);
+  const [ formdata, setformdata ] = useState({
+    name: '',
+    subject: '',
+    email: '',
+    message: '',
+  })
+  const { name, subject, email, message } = formdata;
 
-  const onSubmit = (payload) => {
-    setIsLoading(true);
-    axios
-      .post("/feedback", payload)
-      .then((res) => {
-        toast.success(res.data.Message, toastConfig);
-        setIsLoading(false);
-        // reset();
-      })
-      .catch((err) => {
-        toast.error("Unable To Send Message. Please Try Later.", toastConfig);
-        setIsLoading(false);
-      });
+  const onChange = e => {
+    setformdata({ 
+      ...formdata,
+      [ e.target.name] : e.target.value
+    })
+  }
+  const onSubmit = e =>{
+    e.preventDefault();
+  
+    setIsLoading(true)
+    createFeedback({ name, subject, email, message })
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 700);
   };
 
   return (
     <form
       // onSubmit={handleSubmit(onSubmit)}
+      onSubmit={onSubmit}
       className="font-Futura-light h-100 form-ipad"
     >
       <div className="form-group">
@@ -35,6 +46,8 @@ export const ContactForm = () => {
           placeholder="Name *"
           required
           name="name"
+          value={ name }
+          onChange={onChange}
           // ref={register}
         />
       </div>
@@ -45,6 +58,8 @@ export const ContactForm = () => {
           placeholder="Subject *"
           required
           name="subject"
+          value={ subject }
+          onChange={onChange}
           // ref={register}
         />
       </div>
@@ -55,6 +70,8 @@ export const ContactForm = () => {
           placeholder="Email *"
           required
           name="email"
+          value={ email }
+          onChange={onChange}
           // ref={register}
         />
       </div>
@@ -65,6 +82,8 @@ export const ContactForm = () => {
           rows="4"
           required
           name="message"
+          value={ message }
+          onChange={onChange}
           // ref={register}
         ></textarea>
       </div>
@@ -72,7 +91,7 @@ export const ContactForm = () => {
       <button
         type="submit"
         className="btn border-0 shadow-contact border-0 btn-outline-dark btn-block font-weight-bold"
-        disabled={isLoading}
+        // disabled={isLoading}
       >
         <span
           className={isLoading ? "mr-2 spinner-border spinner-border-sm" : ""}
@@ -84,3 +103,5 @@ export const ContactForm = () => {
     </form>
   );
 };
+
+export default connect(null , {createFeedback})(ContactForm);

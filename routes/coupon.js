@@ -8,7 +8,7 @@ const auth = require('../middleware/auth')
 const check = require('../middleware/check')
 
 router.post('/',auth ,verify.isAdmin, async (req, res) => {
-    const { name, code, type, value, isActive } = req.body;
+    const { name, code, type, value, isActive , discountType } = req.body;
     try {
         const cod = await Coupon.findOne({ code: code });
         if (cod) {
@@ -18,7 +18,8 @@ router.post('/',auth ,verify.isAdmin, async (req, res) => {
             name,
              code,
             type,
-             value,
+            value,
+            discountType,
              isActive})
 
         await coupon.save();

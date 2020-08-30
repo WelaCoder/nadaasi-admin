@@ -39,7 +39,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 token: null,
-                users : null,
+                user : null,
                 isAuthenticate: false,
                 isAdmin: false,
                 isloading: false
@@ -50,7 +50,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 token: null,
-                users : null,
+                user : null,
                 isAuthenticate: false,
                 isAdmin: false,
                 isloading: false

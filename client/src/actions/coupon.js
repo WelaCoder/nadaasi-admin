@@ -9,7 +9,7 @@ import {
 } from "./types"
 //create coupon
 
-export const createCoupon = ({ name, code, value, isActive }) => async (dispatch) => {
+export const createCoupon = ({ name, code, value, discountType ,isActive }) => async (dispatch) => {
     try {
         const config = {
             headers: {
@@ -17,7 +17,7 @@ export const createCoupon = ({ name, code, value, isActive }) => async (dispatch
             },    
         }
         
-        const body = JSON.stringify({ name, code, value, isActive });
+        const body = JSON.stringify({ name, code, discountType ,value, isActive });
         const res = await axios.post('/api/coupon', body, config);
         dispatch({
             type: CREATE_COUPON,

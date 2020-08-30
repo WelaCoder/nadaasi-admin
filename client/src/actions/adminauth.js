@@ -6,7 +6,7 @@ import {
     ADMIN_LOGOUT,
     ADMIN_LOGIN_ERROR
 } from "./types";
-import setAuthToken from '../utils/setAuthtoken'
+import setAuthToken from '../utils/setAuthToken'
 // get admin
 export const getAdmin = () => async (dispatch) => {
     try
@@ -41,6 +41,7 @@ export const adminLogin = ({ email, password }) => async (dispatch) =>{
             type: LOGIN_ADMIN,
             payload: res.data
         })
+        dispatch(getAdmin());
     } catch (error) {
         dispatch({
             type: ADMIN_LOGIN_ERROR

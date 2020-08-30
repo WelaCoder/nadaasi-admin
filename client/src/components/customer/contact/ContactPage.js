@@ -1,6 +1,6 @@
 import React from "react";
 import { ContactCardsList } from "./contact-card-list";
-import { ContactForm } from "./contact-form";
+import  ContactForm  from "./contact-form";
 import { ContactInfo } from "./contact-info";
 import { ContactBanner } from "./contact-banner";
 import { Container } from "react-bootstrap";

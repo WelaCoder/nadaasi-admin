@@ -24,6 +24,11 @@ app.use("/api/product", require("./routes/product"));
 app.use("/api/cart", require("./routes/cart"));
 app.use("/api/payment", require("./routes/payment"));
 app.use("/api/order", require("./routes/order"));
+app.use('/api/admin', require('./routes/admin'));
+app.use('/api/coupon', require('./routes/coupon'));
+app.use('/api/feedback', require('./routes/feedback'));
+app.use('/api/merchantreturn', require('./routes/return'))
+
 
 app.listen(PORT, () => {
   console.log(`Your Server is runing on ${PORT} post `);

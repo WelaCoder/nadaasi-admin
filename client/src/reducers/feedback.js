@@ -10,7 +10,7 @@ import {
 const initialState = {
     feedback: null,
     feedbacks: [],
-    loading: true
+    Loading: true
 }
 export default (state = initialState, action) => {
     switch (action.type) {
@@ -19,35 +19,35 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 feedback: action.payload,
-                loading: false
+                Loading: false
             }
         case GET_FEEDBACK:
             return {
                 ...state,
                 feedbacks: action.payload,
-                loading: false
+                Loading: false
             }
         case GET_FEEDBACK_ERROR:
             return {
                 ...state,
-                loading: false
+                Loading: false
             }
         case UPDATE_FEEDBACK:
             toast.success("Feedback is Resolved Successfully", { autoClose: '1000' });
             return {
                 ...state,
-                loading : false
+                Loading : false
             }
         case UPDATE_FEEDBACK_ERROR:
             return {
                 ...state,
-                loading: false
+                Loading: false
             }
         case CREATE_FEEDBACK_ERROR:
             toast.error("Please Login First to Send Feedback", { autoClose: '1000' });
             return {
                 ...state,
-                loading: false
+                Loading: false
             }
         default:
             return state

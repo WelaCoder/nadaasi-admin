@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { Container } from "reactstrap";
 // import { useIsAdmin } from "../hooks/useIsAdmin";
-import { Loader } from "../spinner";
+import  Loader  from "../spinner";
 // import { setAuthorizationToken } from "../helpers/utils";
 
 const defaultImg =

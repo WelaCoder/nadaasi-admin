@@ -1,55 +1,42 @@
 import React, { useState, useEffect } from "react";
 import { Form, FormGroup, Input, Col, Label, Alert } from "reactstrap";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
+import { Redirect } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 // import { setAuthorizationToken } from "../helpers/utils";
-import { Loader } from "../spinner";
 
-export const Login = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [error, setError] = useState(false);
-  const history = useHistory();
-  const [isLoading, setIsLoading] = useState(true);
+import  Loader from "../spinner";
 
-  useEffect(() => {
-    setIsLoading(false);
-    if (localStorage.getItem("loggedIn")) {
-      // setAuthorizationToken();
-      history.push("/coupons");
-    }
-    // eslint-disable-next-line
-  }, []);
+import { connect } from 'react-redux';
 
+import {adminLogin} from '../../../actions/adminauth'
+
+const Login = ({adminLogin , adminauth : {isAuthenticate}}) => {
+  const [ formdata, setformdata ] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = formdata;
+  const onChange = (e) => {
+    setformdata({
+      ...formdata,
+      [e.target.name] : e.target.value
+    })
+  }
+  if (isAuthenticate) {
+    return<Redirect to="/admin/coupons" />
+  }
   const onSubmit = (e) => {
-    setIsLoading(true);
     e.preventDefault();
-    const payload = {
-      email,
-      password,
-    };
-    axios
-      .post("/auth/admin", payload)
-      .then((res) => {
-        localStorage.setItem("loggedIn", res.data.token);
-        setIsLoading(false);
-        history.push("/coupons");
-      })
-      .catch((err) => {
-        setIsLoading(false);
-        setError(true);
-      });
-  };
-
+    adminLogin({ email, password });
+  }
   return (
     <div className="d-flex justify-content-center align-items-center h-100vh">
       <Col md={6} className="m-auto">
-        {isLoading ? (
+        {false ? (
           <Loader />
         ) : (
           <>
-            {error && <Alert color="danger">Invalid Credentials.</Alert>}
+            {false && <Alert color="danger">Invalid Credentials.</Alert>}
             <img src={logo} alt="logo" width="100%" />
             <small className="text-right w-100 d-block px-2 font-weight-bold ">
               Admin
@@ -59,9 +46,9 @@ export const Login = () => {
                 <Label>Email</Label>
                 <Input
                   type="text"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
+                  name='email'
+                  value={email}
+                  onChange={onChange}
                   placeholder="Enter Email Address"
                   required
                 />
@@ -69,11 +56,11 @@ export const Login = () => {
               <FormGroup>
                 <Label>Password</Label>
                 <Input
-                  type="password"
+                    type="password"
+                    name='password'
                   placeholder="Enter Password"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
+                  value={password}
+                  onChange={onChange}
                   required
                 />
               </FormGroup>
@@ -85,3 +72,7 @@ export const Login = () => {
     </div>
   );
 };
+const mapStateToProps = state => ({
+  adminauth : state.adminauth
+})
+export default connect(mapStateToProps , {adminLogin})(Login)

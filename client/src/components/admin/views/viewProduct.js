@@ -4,7 +4,7 @@ import { ProductList } from "../product/productList";
 // import { useIsAdmin } from "../hooks/useIsAdmin";
 // import { setAuthorizationToken } from "../helpers/utils";
 import Header from "../header";
-import { Loader } from "../spinner";
+import  Loader  from "../spinner";
 import NotFound from "../NotFound";
 
 export const ViewProducts = () => {

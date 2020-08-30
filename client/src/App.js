@@ -26,7 +26,7 @@ import ShopPage from "./components/customer/shop/ShopPage";
 import MyNavbar from "./components/customer/layout/Navbar";
 import Footer from "./components/customer/layout/Footer";
 import Customer from "./components/customer/Customer";
-import { Admin } from "./components/admin/Admin";
+import Admin  from "./components/admin/Admin";
 // Redux Setup
 import { Provider } from "react-redux";
 import store from "./store";
