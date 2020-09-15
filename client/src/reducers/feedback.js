@@ -1,4 +1,4 @@
-import { toast} from "react-toastify";
+import { toast } from "react-toastify";
 import {
     CREATE_FEEDBACK,
     CREATE_FEEDBACK_ERROR,
@@ -9,7 +9,7 @@ import {
 } from '../actions/types'
 const initialState = {
     feedback: null,
-    feedbacks: [],
+    feedbacks: null,
     Loading: true
 }
 export default (state = initialState, action) => {
@@ -34,9 +34,11 @@ export default (state = initialState, action) => {
             }
         case UPDATE_FEEDBACK:
             toast.success("Feedback is Resolved Successfully", { autoClose: '1000' });
+            console.log(action.payload)
             return {
                 ...state,
-                Loading : false
+                feedback: state.feedback.map(f => f._id == action.payload._id ? action.payload : f),
+                Loading: false
             }
         case UPDATE_FEEDBACK_ERROR:
             return {

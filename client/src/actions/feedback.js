@@ -1,6 +1,6 @@
 import axios from "axios";
-
-import { 
+import { API } from "../constants/constants";
+import {
     CREATE_FEEDBACK,
     CREATE_FEEDBACK_ERROR,
     UPDATE_FEEDBACK,
@@ -17,7 +17,7 @@ export const createFeedback = ({ name, subject, email, message }) => async (disp
             }
         }
         const body = JSON.stringify({ name, subject, email, message });
-        const res = await axios.post('/api/feedback', body, config);
+        const res = await axios.post(`${API}/api/feedback`, body, config);
         console.log(res.data);
         dispatch({
             type: CREATE_FEEDBACK,
@@ -31,10 +31,10 @@ export const createFeedback = ({ name, subject, email, message }) => async (disp
 };
 export const getFeedback = () => async (dispatch) => {
     try {
-        const res = await axios.get('/api/feedback');
+        const res = await axios.get(`${API}/api/feedback`);
         dispatch({
             type: GET_FEEDBACK,
-            payload :res.data
+            payload: res.data
         })
     } catch (error) {
         dispatch({
@@ -44,9 +44,10 @@ export const getFeedback = () => async (dispatch) => {
 }
 export const updateFeedback = (id, status) => async (dispatch) => {
     try {
-        const res = await axios.patch(`/api/feedback/${id}` , status);
+        const res = await axios.patch(`${API}/api/feedback/${id}`, status);
         dispatch({
-            type: UPDATE_FEEDBACK
+            type: UPDATE_FEEDBACK,
+            payload: res.data,
         })
     } catch (error) {
         dispatch({

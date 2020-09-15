@@ -4,19 +4,20 @@ import { toast } from "react-toastify";
 // import axios from "axios";
 // import { useIsAdmin } from '../hooks/useIsAdmin';
 // import { setAuthorizationToken } from '../helpers/utils';
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-import { createCoupon } from '../../../actions/coupon';
-const AddCoupon =  ({createCoupon , coupon : {loading} }) => {
+import { createCoupon } from "../../../actions/coupon";
+import Toggle from "react-toggle";
+const AddCoupon = ({ createCoupon, coupon: { loading } }) => {
   // useIsAdmin();
-  const [ coupondata, setcoupondata ] = useState({
-    name: '', 
-    code: '',
-    value: '', 
-    discountType: '',
-    isActive : null
-  })
-  const { name, code, value, discountType, isActive } = coupondata;
+  const [coupondata, setcoupondata] = useState({
+    name: "",
+    code: "",
+    discount: "",
+    discountType: "pi",
+    isActive: true,
+  });
+  const { name, code, discount, discountType, isActive } = coupondata;
   // const { register, handleSubmit, errors, reset } = useForm();
   const [isLoading, setisLoading] = useState(false);
 
@@ -42,30 +43,42 @@ const AddCoupon =  ({createCoupon , coupon : {loading} }) => {
   const onChange = (e) => {
     setcoupondata({
       ...coupondata,
-      [ e.target.name] : e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
   const onSubmit = (e) => {
     e.preventDefault();
     setisLoading(true);
     // console.log({ name, code, value, discountType , isActive })
-    createCoupon({ name, code, value, discountType , isActive });
+    createCoupon({ name, code, discount, discountType, isActive });
     setTimeout(() => {
-      setisLoading(false)
+      setisLoading(false);
     }, 700);
-    
-  }
+  };
   return (
     <div className="container mt-4">
-      <h3 className="text-info font-weight-bold py-2 border-top border-bottom ">
-        Add Coupon
-      </h3>
+      <div className="d-flex justify-content-between align-items-center">
+        <h3 className="text-info font-weight-bold py-2 border-top border-bottom ">
+          Add Coupon
+        </h3>
+
+        <div className={"d-flex justify-content-center align-items-center"}>
+          <span className={"mr-1"}>Active</span>{" "}
+          <Toggle
+            checked={isActive}
+            onChange={(e) =>
+              setcoupondata({ ...coupondata, isActive: e.target.checked })
+            }
+          />
+        </div>
+      </div>
       <form className="mt-4" onSubmit={onSubmit}>
         <div className="form-group">
           <input
             type="text"
             name="name"
-            value={ name }
+            required
+            value={name}
             onChange={onChange}
             className="form-control"
             placeholder="Enter Coupon Name.."
@@ -81,9 +94,10 @@ const AddCoupon =  ({createCoupon , coupon : {loading} }) => {
         <div className="form-group">
           <input
             type="text"
+            required
             name="code"
             className="form-control"
-            value={ code }
+            value={code}
             onChange={onChange}
             placeholder="Enter Coupon Code.."
             // ref={register({ required: true })}
@@ -97,24 +111,28 @@ const AddCoupon =  ({createCoupon , coupon : {loading} }) => {
             </div> */}
           {/* )} */}
         </div>
-      
-          <div className="form-group">
-          <select className='form-control' name="discountType" value={discountType} onChange={onChange}  >
-            <option value="0">* Select Discount Type</option>
-            <option value="PI">PI</option>
-            <option value="DI">DI </option>
-            <option value="DST">DST </option>
-            <option value="DT">DT</option>
-            <option value="Free Shipping">Free Shipping</option>
+
+        <div className="form-group">
+          <select
+            className="form-control"
+            name="discountType"
+            value={discountType}
+            onChange={onChange}
+          >
+            <option value="pi">Percentage off each Item</option>
+            <option value="di">Dollar Amount off each Item </option>
+            <option value="dst">Dollar Amount off Shipping Total </option>
+            <option value="dt">Dollar amount off SubTotal</option>
+            <option value="fs">Free Shipping</option>
           </select>
-      
-          </div>
+        </div>
         <div className="form-group">
           <input
             type="number"
-            name="value"
+            name="discount"
             className="form-control"
-            value={ value }
+            required
+            value={discount}
             onChange={onChange}
             placeholder="Enter Discount Value.."
             // ref={register({ required: true })}
@@ -125,44 +143,24 @@ const AddCoupon =  ({createCoupon , coupon : {loading} }) => {
             </div>
           )} */}
         </div>
-        <div className="form-group">
-          <select
-            name="isActive"
-            defaultValue=""
-            className="form-control"
-            value={ isActive }
-            onChange={onChange}
-            // ref={register({ required: true })}
-          >
-            <option value="" disabled>
-              Please Selected Coupon Status
-            </option>
-            <option value="true">Active</option>
-            <option value="false">InActive</option>
-          </select>
-          {/* {isActive == '' && (
-            <div className="font-weight-bold text-danger mt-1 mb-0">
-              Coupon Status is Required.
-            </div>
-          )} */}
-        </div>
+
         <button
           type="submit"
           className="btn btn-block btn-dark mb-2"
-          disabled={loading}
+          disabled={isLoading}
         >
           <span
-            className={loading ? "mr-2 spinner-border spinner-border-sm" : ""}
+            className={isLoading ? "mr-2 spinner-border spinner-border-sm" : ""}
             role="status"
             aria-hidden="true"
           ></span>
-          {loading ? "Uploading..." : "Upload"}
+          {isLoading ? "Adding Coupon..." : "Add Coupon"}
         </button>
       </form>
     </div>
   );
 };
-const mapStateToProps = state => ({
-  coupon : state.coupon
-})
-export default connect(mapStateToProps , {createCoupon})(AddCoupon);
+const mapStateToProps = (state) => ({
+  coupon: state.coupon,
+});
+export default connect(mapStateToProps, { createCoupon })(AddCoupon);

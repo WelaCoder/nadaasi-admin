@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import { useProducts } from "../hooks/useProducts";
 import { ProductList } from "../product/productList";
-// import { useIsAdmin } from "../hooks/useIsAdmin";
-// import { setAuthorizationToken } from "../helpers/utils";
 import Header from "../header";
-import  Loader  from "../spinner";
+import Loader from "../spinner";
 import NotFound from "../NotFound";
-
-export const ViewProducts = () => {
+import { connect } from "react-redux";
+import { getProducts } from "../../../actions/appActions";
+const ViewProducts = ({ products, getProducts }) => {
   // setAuthorizationToken();
   // useIsAdmin();
   // const { products, isLoading } = useProducts();
-  const products = [];
-  const isLoading = false;
+  // const isLoading = false;
+  useEffect(() => {
+    getProducts();
+  }, []);
   return (
     <div className="container mt-4">
-      {isLoading ? (
+      {products == null ? (
         <Loader />
       ) : (
         <>
@@ -36,3 +37,7 @@ export const ViewProducts = () => {
     </div>
   );
 };
+const mapStateToProps = (state) => ({
+  products: state.app.products,
+});
+export default connect(mapStateToProps, { getProducts })(ViewProducts);

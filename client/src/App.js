@@ -18,15 +18,8 @@ import {
   Redirect,
   BrowserRouter as Router,
 } from "react-router-dom";
-import HomePage from "./components/customer/home/homepage";
-import ContactPage from "./components/customer/contact/ContactPage";
-import AboutPage from "./components/customer/about/AboutPage";
-import CartPage from "./components/customer/cart/CartPage";
-import ShopPage from "./components/customer/shop/ShopPage";
-import MyNavbar from "./components/customer/layout/Navbar";
-import Footer from "./components/customer/layout/Footer";
-import Customer from "./components/customer/Customer";
-import Admin  from "./components/admin/Admin";
+
+import Admin from "./components/admin/Admin";
 // Redux Setup
 import { Provider } from "react-redux";
 import store from "./store";
@@ -37,7 +30,7 @@ function App() {
         <div className="App">
           <Switch>
             <Route path="/admin" component={Admin} />
-            <Route path="/" component={Customer} />
+            <Route path="*" component={() => <Redirect to="/admin" />} />
           </Switch>
         </div>
       </Router>

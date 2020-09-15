@@ -27,7 +27,7 @@ const initialState = {
   isAdmin: false,
   loading: true,
   user: null,
-  products: [],
+  products: null,
   filteredProducts: null,
   loadingProducts: true,
   choosenProduct: {

@@ -3,18 +3,18 @@ import React, { useEffect, useState } from "react";
 
 import { Container } from "reactstrap";
 // import { useIsAdmin } from "../hooks/useIsAdmin";
-import  Loader  from "../spinner";
+import Loader from "../spinner";
 // import { setAuthorizationToken } from "../helpers/utils";
 import NotFound from "../NotFound";
 import Header from "../header";
 import FeedbackList from "../feedback/feedbackList";
 import { connect } from "react-redux";
-import { getFeedback } from '../../../actions/feedback';
+import { getFeedback } from "../../../actions/feedback";
 // export const stringTruncate = (str, length) => {
 //   const dots = str.length > length ? "..." : "";
 //   return `${str.substring(0, length)}${dots}`;
 // };
- const Feedback = ({getFeedback , feedback : {feedbacks}}) => {
+const Feedback = ({ getFeedback, feedback: { feedbacks } }) => {
   // const [feedback, setFeedback] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -33,13 +33,12 @@ import { getFeedback } from '../../../actions/feedback';
     //     setIsLoading(false);
     //   });
     getFeedback();
-
   }, []);
 
   return (
     <Container className="mt-4" fluid>
       <div className="col-md-12">
-        {feedbacks.length === 0? (
+        {feedbacks == null ? (
           <Loader />
         ) : (
           <div className="row">
@@ -59,7 +58,7 @@ import { getFeedback } from '../../../actions/feedback';
     </Container>
   );
 };
-const mapStateToProps = state => ({
-  feedback : state.feedback
-})
-export default connect(mapStateToProps , {getFeedback})(Feedback);
+const mapStateToProps = (state) => ({
+  feedback: state.feedback,
+});
+export default connect(mapStateToProps, { getFeedback })(Feedback);
