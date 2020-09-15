@@ -28,17 +28,17 @@ const Return = ({
         {returnRequest == null ? (
           <Loader />
         ) : (
-          <div className="row">
-            <div className="col-md-10 container ">
-              <Header heading="Coupons" item={returnRequest} />
-              {returnRequest.length > 0 ? (
-                <ReturnList returnItems={returnRequest} />
-              ) : (
-                <NotFound message="No Active Coupons." />
-              )}
+            <div className="row">
+              <div className="col-md-10 container ">
+                <Header heading="Return Requests" item={returnRequest} />
+                {returnRequest.length > 0 ? (
+                  <ReturnList returnItems={returnRequest} />
+                ) : (
+                    <NotFound message="No Active Coupons." />
+                  )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     </Container>
   );
