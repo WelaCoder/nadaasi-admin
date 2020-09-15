@@ -7,9 +7,17 @@ const connectDB = require("./config/db");
 const PORT = process.env.PORT || 5000;
 
 connectDB();
-app.get("/uploads/:file", (req, res) => {
-  res.sendFile(__dirname + "/client/public/uploads/" + req.params.file);
-});
+// app.get("/uploads/:file", (req, res) => {
+//   res.sendFile(__dirname + "/client/public/uploads/" + req.params.file);
+// });
+// app.get("/payment", (req, res) => {
+//   fs.writeFile("mynewfile3.html", req.body.html, function (err) {
+//     if (err) throw err;
+//     console.log("Saved!");
+//   });
+
+//   return res.sendFile(__dirname + "/mynewfile3.html");
+// });
 app.get("/payment", (req, res) => {
   fs.writeFile("mynewfile3.html", req.body.html, function (err) {
     if (err) throw err;
@@ -19,15 +27,15 @@ app.get("/payment", (req, res) => {
   return res.sendFile(__dirname + "/mynewfile3.html");
 });
 app.use(express.json({ extended: true }));
-app.use("/api/user", require("./routes/user"));
-app.use("/api/product", require("./routes/product"));
-app.use("/api/cart", require("./routes/cart"));
-app.use("/api/payment", require("./routes/payment"));
-app.use("/api/order", require("./routes/order"));
-app.use('/api/admin', require('./routes/admin'));
-app.use('/api/coupon', require('./routes/coupon'));
-app.use('/api/feedback', require('./routes/feedback'));
-app.use('/api/merchantreturn', require('./routes/return'))
+// app.use("/api/user", require("./routes/user"));
+// app.use("/api/product", require("./routes/product"));
+// app.use("/api/cart", require("./routes/cart"));
+// app.use("/api/payment", require("./routes/payment"));
+// app.use("/api/order", require("./routes/order"));
+// app.use('/api/admin', require('./routes/admin'));
+// app.use('/api/coupon', require('./routes/coupon'));
+// app.use('/api/feedback', require('./routes/feedback'));
+// app.use('/api/merchantreturn', require('./routes/return'))
 
 
 app.listen(PORT, () => {
