@@ -10,7 +10,7 @@ import { OPTIONS } from "../../config/selectConfig";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
 import { addProduct } from "../../actions/appActions";
-const ProductForm = ({ addProduct }) => {
+const ProductForm = ({ addProduct, addingProduct }) => {
   const [images, setImages] = useState([]);
   const [showPicker, setShowPicker] = useState(false);
   const [currentColor, setcurrentColor] = useState("#ffffff");
@@ -20,17 +20,18 @@ const ProductForm = ({ addProduct }) => {
   const [data, setdata] = useState({
     images: [],
     name: "",
-    price: null,
+    price: "",
     dressType: "",
     dressSize: [],
+    bodyType: [],
     dressColor: [],
     fabric: "",
     closure: "",
-    length: null,
-    neckLine: null,
-    waistLine: null,
+    length: "",
+    neckLine: "",
+    waistLine: "",
     details: "",
-    modelHeightSize: null,
+    modelHeightSize: "",
     inStock: true,
   });
 
@@ -39,10 +40,7 @@ const ProductForm = ({ addProduct }) => {
   const onDrop = useCallback((acceptedFiles) => {
     const placeholderArray = [];
     setImages(acceptedFiles);
-    setdata({
-      ...data,
-      images: acceptedFiles,
-    });
+
     acceptedFiles.map((file) =>
       placeholderArray.push(URL.createObjectURL(file))
     );
@@ -52,55 +50,28 @@ const ProductForm = ({ addProduct }) => {
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    // setIsLoading(true);
-    // const {
-    //   price,
-    //   name,
-    //   closure,
-    //   details,
-    //   fabric,
-    //   length,
-    //   neckLine,
-    //   waistLine,
-    //   modelHAndS,
-    // } = data;
-
-    // const productDetails = {
-    //   closure,
-    //   details,
-    //   fabric,
-    //   length,
-    //   neckLine,
-    //   waistLine,
-    //   modelHAndS,
-    // };
-    // images.map((file) => data.append("images", file));
-    // data.append("price", price);
-    // data.append("name", name);
-    // data.append("rating", "5");
-    // data.append("size", dressSize);
-    // data.append("color", dressColor);
-    // data.append("dressType", dressType);
-    // data.append("inStock", inStock);
-    // data.append("details", JSON.stringify(productDetails));
-
-    // axios
-    //   .post("/product", data)
-    //   .then((res) => {
-    //     setIsLoading(false);
-    //     toast.success("Product Added Successfully", {
-    //       autoClose: "1500",
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     setIsLoading(false);
-    //     toast.error("Unable To Add Product", {
-    //       autoClose: "1500",
-    //     });
-    //   });
+  const onSubmit = async () => {
+    // e.preventDefault();
+    if (
+      data.price == "" ||
+      data.length == "" ||
+      data.neckLine == "" ||
+      data.waistLine == "" ||
+      data.details == "" ||
+      data.modelHeightSize == "" ||
+      data.name == "" ||
+      data.dressType == "" ||
+      data.fabric == "" ||
+      data.closure == "" ||
+      data.dressSize.length < 1 ||
+      data.dressColor.length < 1 ||
+      images.length < 1 ||
+      data.bodyType.length < 1
+    ) {
+      toast.error("Please enter all fields for the dress.");
+      return;
+    }
+    setIsLoading(true);
     const product = new FormData();
     images.map((file) => product.append("images", file));
     product.append("price", data.price);
@@ -117,10 +88,13 @@ const ProductForm = ({ addProduct }) => {
     product.append("neckline", data.neckLine);
     product.append("waistline", data.waistLine);
     product.append("modelHeightSize", data.modelHeightSize);
+    product.append("bodyType", data.bodyType);
 
     console.log("submitted");
     console.log(data);
-    addProduct(product);
+    let success = await addProduct(product);
+    setIsLoading(false);
+    if (success) toast.success("Successfully added new product");
   };
   const onChange = (e) => {
     setdata({
@@ -128,8 +102,9 @@ const ProductForm = ({ addProduct }) => {
       [e.target.name]: e.target.value,
     });
   };
+
   return (
-    <form onSubmit={onSubmit}>
+    <div>
       <div className="row">
         <div className="col-md-12 d-flex justify-content-between">
           <h3 className="mb-0 font-weight-bold text-info">Upload Product</h3>
@@ -158,12 +133,12 @@ const ProductForm = ({ addProduct }) => {
                 </span>
               </div>
             ) : (
-              <div className="bg-white my-3 d-flex justify-content-center border shadow-sm py-5 mb-2">
-                <span className="text-info font-weight-bold">
-                  Drag n Drop Image Here Or Click to Select..
+                <div className="bg-white my-3 d-flex justify-content-center border shadow-sm py-5 mb-2">
+                  <span className="text-info font-weight-bold">
+                    Drag n Drop Image Here Or Click to Select..
                 </span>
-              </div>
-            )}
+                </div>
+              )}
           </div>
         </div>
         <div className="col-md-12">
@@ -237,6 +212,26 @@ const ProductForm = ({ addProduct }) => {
                     ...data,
                     // dressColor: "value",
                     dressSize: values.map((value) => value.value),
+                  });
+              }}
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="form-group">
+            <Select
+              defaultValue={[]}
+              isMulti
+              placeholder="Select Body Type.."
+              name="bodyType"
+              // innerRef={register}
+              options={OPTIONS.bodyTypeOptions}
+              onChange={(values) => {
+                values !== null &&
+                  setdata({
+                    ...data,
+                    // dressColor: "value",
+                    bodyType: values.map((value) => value.value),
                   });
               }}
             />
@@ -440,10 +435,12 @@ const ProductForm = ({ addProduct }) => {
         </div>
 
         <div className="col-md-12 ">
-          <button
+          <a
+            href={"#!"}
             type="submit"
+            onClick={onSubmit}
             className="btn btn-block btn-dark mb-2"
-            disabled={isLoading}
+            disabled={addingProduct}
           >
             <span
               className={
@@ -453,11 +450,13 @@ const ProductForm = ({ addProduct }) => {
               aria-hidden="true"
             ></span>
             {isLoading ? "Uploading..." : "Upload"}
-          </button>
+          </a>
         </div>
       </div>
-    </form>
+    </div>
   );
 };
-
-export default connect(null, { addProduct })(ProductForm);
+const mapStateToProps = (state) => ({
+  addingProduct: state.app.addingProduct,
+});
+export default connect(mapStateToProps, { addProduct })(ProductForm);

@@ -21,11 +21,9 @@ import {
 
 export const addProduct = (data) => async (dispatch) => {
   try {
-    for (var pair of data.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
-    }
-    console.log("add product");
-    const res = await axios.post("/api/product", data);
+
+    const res = await axios.post(`${API}/api/product`, data);
+    return true;
   } catch (error) {
     console.log(error);
   }

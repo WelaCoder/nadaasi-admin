@@ -81,16 +81,23 @@ shadow-sm  mb-2"
           </div>
           <div class="row py-2 text-muted border-bottom">
             <div class="col-md-5">Color</div>
-            <div class="col-md-7">{dressColor.map((clr, idx) => (
-              <div
-                key={idx}
-                className="mr-2 custom-rounded shadow-sm col-2"
-                style={{
-                  backgroundColor: `${clr}`,
-                  width: '10px !important'
-                }}
-              ></div>
-            ))}</div>
+            <div class="col-md-7">
+              <div className="row">
+                {dressColor.map((clr, idx) => (
+                  <div
+                    key={idx}
+                    className="mr-2  custom-rounded shadow-sm col-2"
+                    style={{
+                      backgroundColor: `${clr}`,
+                      width: '10px !important'
+                    }}
+                  ></div>
+                ))}
+              </div>
+
+
+
+            </div>
           </div>
           <div class="row py-2 text-muted border-bottom">
             <div class="col-md-5">Model Height And Size</div>
