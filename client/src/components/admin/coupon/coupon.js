@@ -39,7 +39,7 @@ const Coupon = ({ coupon, updateCoupon }) => {
             <span className="py-1">{discount}</span>
           </small>
         </div>
-        <div className="col-md-1">
+        <div className="col-md-2">
           <small className="d-flex flex-column">
             <span className="text-muted border-bottom py-1 ">Active</span>
             <span className="py-1">

@@ -1,9 +1,9 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import Toggle from 'react-toggle';
 import { connect } from 'react-redux';
-import { updateStatus} from '../../../actions/return'
+import { updateStatus } from '../../../actions/return'
 
-const ReturnItem = ({returnRequest , updateStatus}) => {
+const ReturnItem = ({ returnRequest, updateStatus }) => {
   const {
     _id,
     name,
@@ -63,12 +63,12 @@ const ReturnItem = ({returnRequest , updateStatus}) => {
             </span>
           </small>
         </div>
-        <div className="col-md-1">
+        <div className="col-md-2">
           <small className="d-flex flex-column">
             <span className="text-muted border-bottom py-1 ">
-               IsResolved
+              IsResolved
             </span>
-            <span className="py-1" > 
+            <span className="py-1" >
               <Toggle
                 id={_id}
                 defaultChecked={isResolved}
@@ -84,4 +84,4 @@ const ReturnItem = ({returnRequest , updateStatus}) => {
   )
 }
 
-export default connect(null , {updateStatus})(ReturnItem)
+export default connect(null, { updateStatus })(ReturnItem)

@@ -42,7 +42,7 @@ const OrderItems = ({ order, captureOrder }) => {
             <span className=" py-1">{status}</span>
           </small>
         </div>
-        <div className="col-md-1">
+        <div className="col-md-2">
           <small className="d-flex flex-column ">
             <span className="text-muted py-1 border-bottom">Shipped</span>
             <span className="py-3">
