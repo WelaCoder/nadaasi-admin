@@ -16,6 +16,7 @@ import {
   FILTER_PRODUCTS,
   SORT_PRODUCTS,
   SET_CURRENT_PAGE,
+  GET_CURRENT_PRODUCT
 } from "./types";
 
 export const addProduct = (data) => async (dispatch) => {
@@ -51,22 +52,23 @@ export const getProducts = () => async (dispatch) => {
   }
 };
 export const setCurrentProduct = (productId) => async (dispatch) => {
+
+
   try {
     dispatch({
-      type: SET_LOADING,
-      payload: true,
+      type: GET_CURRENT_PRODUCT,
+      payload: null,
     });
+
+    const res = await axios.get(`${API}/api/product/${productId}`);
     dispatch({
-      type: SET_CURRENT_PRODUCT,
-      payload: productId,
-    });
-    dispatch({
-      type: SET_LOADING,
-      payload: false,
+      type: GET_CURRENT_PRODUCT,
+      payload: res.data,
     });
   } catch (error) {
     console.log(error);
   }
+
 };
 export const setChoosenProduct = (product) => async (dispatch) => {
   try {

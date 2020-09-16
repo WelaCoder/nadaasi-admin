@@ -4,6 +4,8 @@ import axios from "axios";
 import { API } from "../../../constants/constants";
 import { setProductInStock } from "../../../actions/adminProduct";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
 const ProductItem = ({ product, setProductInStock }) => {
   const {
     name,
@@ -30,10 +32,11 @@ const ProductItem = ({ product, setProductInStock }) => {
         <div class="col-md-12 m-0">
           <div class="row justify-content-between p-1">
             <div class="d-flex flex-column">
-              <div class="font-weight-bold text-capitalize border-bottom py-1 mb-2">
-                {name}
-              </div>
-
+              <Link to={`/admin/products/${_id}`} style={{ color: "black" }}>
+                <div class="font-weight-bold text-capitalize border-bottom py-1 mb-2">
+                  {name}
+                </div>
+              </Link>
               <div class="d-flex small justify-content-between ">
                 <div class="mr-1 text-primary text-muted text-capitalize">
                   {dressType}

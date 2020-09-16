@@ -1,12 +1,18 @@
 import { toast } from 'react-toastify';
-import { GET_ADMIN_ORDER, ERROR, CAPTURE_ORDER } from '../actions/types'
+import { GET_ADMIN_ORDER, ERROR, CAPTURE_ORDER, GET_CURRENT_PRODUCT } from '../actions/types'
 const initialState = {
     adminOrder: null,
-    error: null
+    error: null,
+    currentProduct: null,
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
+        case GET_CURRENT_PRODUCT:
+            return {
+                ...state,
+                currentProduct: action.payload
+            };
         case GET_ADMIN_ORDER:
             return {
                 ...state,
