@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API } from "../constants/constants";
-
+import { toast } from 'react-toastify';
 import {
   Add_PRODUCT,
   DELETE_ITEM_FROM_CART,
@@ -16,7 +16,8 @@ import {
   FILTER_PRODUCTS,
   SORT_PRODUCTS,
   SET_CURRENT_PAGE,
-  GET_CURRENT_PRODUCT
+  LOAD_DRESS_TYPES,
+  GET_CURRENT_PRODUCT, SET_SALE
 } from "./types";
 
 export const addProduct = (data) => async (dispatch) => {
@@ -141,6 +142,19 @@ export const loadCart = () => async (dispatch) => {
   }
 };
 
+export const loadDressTypes = () => async (dispatch) => {
+  try {
+    console.log('loading dress types');
+    const res = await axios.get(`${API}/api/dressType`);
+
+    dispatch({
+      type: LOAD_DRESS_TYPES,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const updateCount = (cartId, count) => async (dispatch) => {
   try {
     console.log(cartId);
@@ -157,6 +171,28 @@ export const updateCount = (cartId, count) => async (dispatch) => {
     dispatch({
       type: UPDATE_QUANTITY,
       payload: res.data.cartItem,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+export const setSale = (data) => async (dispatch) => {
+  try {
+    const res = await axios.put(
+      `${API}/api/dressType/`,
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    toast.success('Sale Updated Successfully...')
+    dispatch({
+      type: SET_SALE,
+      payload: res.data,
     });
   } catch (error) {
     console.log(error);

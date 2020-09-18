@@ -18,6 +18,7 @@ import {
   LOAD_ORDERS,
   CREATE_PAYMENT_SESSION,
   SET_CURRENT_ORDER,
+  LOAD_DRESS_TYPES,
   SET_CURRENT_PAGE,
 } from "../actions/types";
 import { toast } from "react-toastify";
@@ -51,9 +52,15 @@ const initialState = {
   orders: null,
   currentOrder: null,
   currentPage: 1,
+  dressTypeOptions: null,
 };
 export default (state = initialState, action) => {
   switch (action.type) {
+    case LOAD_DRESS_TYPES:
+      return {
+        ...state,
+        dressTypeOptions: action.payload
+      }
     case SET_CURRENT_PAGE:
       return {
         ...state,

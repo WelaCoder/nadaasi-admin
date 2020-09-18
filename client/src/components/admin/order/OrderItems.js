@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import Toggle from "react-toggle";
 import { Link } from "react-router-dom";
 import { captureOrder } from "../../../actions/adminOrder";
+import { OPTIONS } from '../../../config/selectConfig'
+import Select from 'react-select'
 const OrderItems = ({ order, captureOrder }) => {
   const { _id, orderId, name, date, subject, email, message, status } = order;
   return (
@@ -36,14 +38,27 @@ const OrderItems = ({ order, captureOrder }) => {
           </small>
           <br />
         </div>
-        <div className="col-md-2">
+        {/* <div className="col-md-2">
           <small className="d-flex flex-column ">
             <span className="text-muted border-bottom py-1">Status</span>
             <span className=" py-1">{status}</span>
           </small>
-        </div>
-        <div className="col-md-2">
-          <small className="d-flex flex-column ">
+        </div> */}
+        <div className="col-md-3">
+          <Select
+            defaultValue={{ label: status, value: status }}
+
+            placeholder="Select Body Type.."
+            name="bodyType"
+            // innerRef={register}
+            options={OPTIONS.orderStatusOptions}
+            onChange={(value) => {
+              value !== null &&
+                captureOrder(_id, value.value);
+              console.log(value);
+            }}
+          />
+          {/* <small className="d-flex flex-column ">
             <span className="text-muted py-1 border-bottom">Shipped</span>
             <span className="py-3">
               <Toggle
@@ -55,7 +70,7 @@ const OrderItems = ({ order, captureOrder }) => {
                 }}
               />
             </span>
-          </small>
+          </small> */}
         </div>
       </div>
     </>

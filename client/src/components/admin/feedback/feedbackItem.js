@@ -10,7 +10,8 @@ const FeedbackItem = ({ feedback, updateFeedback }) => {
     subject,
     email,
     message,
-    isResolved
+    isResolved,
+    phone
   } = feedback;
   const handleChange = (_id, status) => {
     const payload = {
@@ -60,6 +61,16 @@ const FeedbackItem = ({ feedback, updateFeedback }) => {
             </span>
             <span className="py-1">
               {message}
+            </span>
+          </small>
+        </div>
+        <div className="col-md-2">
+          <small className="d-flex flex-column ">
+            <span className="text-muted py-1 border-bottom">
+              Phone
+            </span>
+            <span className="py-1">
+              {phone}
             </span>
           </small>
         </div>

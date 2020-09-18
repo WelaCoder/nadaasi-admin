@@ -24,7 +24,7 @@ export default (state = initialState, action) => {
                 error: action.payload
             }
         case CAPTURE_ORDER:
-            toast.success("Order marked as Shipped")
+            toast.success("Order status updated...")
             return {
                 ...state,
                 adminOrder: state.adminOrder.map(e => e._id == action.payload._id ? action.payload : e)

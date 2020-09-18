@@ -183,19 +183,23 @@ const ProductForm = ({ addProduct, addingProduct }) => {
         </div>
         <div className="col-md-4">
           <div className="form-group">
-            <Select
-              defaultValue={"casual"}
-              placeholder="Select Dress Type.."
+            <input
+              type="text"
               name="dressType"
+              value={data.dressType}
               onChange={(e) => {
                 setdata({
                   ...data,
-                  dressType: e.value.toString(),
+                  dressType: e.target.value.toString(),
                 });
               }}
-              options={OPTIONS.dressTypeOptions}
+              // ref={register}
+              required
+              className="form-control"
+              placeholder="Dress Type"
             />
           </div>
+
         </div>
         <div className="col-md-6">
           <div className="form-group">

@@ -36,6 +36,29 @@ export const OPTIONS = {
       label: "Evening",
     },
   ],
+  orderStatusOptions: [
+    {
+      value: "Accepted",
+      label: "Accepted",
+    },
+    {
+      value: "In The Production",
+      label: "In The Production",
+    },
+    {
+      value: "Ready For Shipment",
+      label: "Ready For Shipment",
+    },
+    {
+      value: "Shipped",
+      label: "Shipped",
+    },
+    {
+      value: "Recieved",
+      label: "Recieved",
+    },
+
+  ],
   bodyTypeOptions: [
     {
       value: "hourglass",

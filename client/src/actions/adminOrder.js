@@ -21,9 +21,14 @@ export const getAllAdminOrders = () => async (dispatch) => {
 
 
 
-export const captureOrder = (id) => async (dispatch) => {
+export const captureOrder = (id, status) => async (dispatch) => {
     try {
-        const res = await axios.get(`${API}/api/order/${id}/captureOrder`)
+        console.log(status);
+        const res = await axios.post(`${API}/api/order/${id}/captureOrder`, { status }, {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
         dispatch({
             type: CAPTURE_ORDER,
             payload: res.data

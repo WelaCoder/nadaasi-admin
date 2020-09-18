@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 
 import { createCoupon } from "../../../actions/coupon";
 import Toggle from "react-toggle";
-const AddCoupon = ({ createCoupon, coupon: { loading } }) => {
+const AddCoupon = ({ createCoupon, coupon: { loading }, history }) => {
   // useIsAdmin();
   const [coupondata, setcoupondata] = useState({
     name: "",
@@ -53,6 +53,7 @@ const AddCoupon = ({ createCoupon, coupon: { loading } }) => {
     createCoupon({ name, code, discount, discountType, isActive });
     setTimeout(() => {
       setisLoading(false);
+      history.push('/');
     }, 700);
   };
   return (
@@ -82,7 +83,7 @@ const AddCoupon = ({ createCoupon, coupon: { loading } }) => {
             onChange={onChange}
             className="form-control"
             placeholder="Enter Coupon Name.."
-            // ref={register({ required: true })}
+          // ref={register({ required: true })}
           />
 
           {/* {name == '' && (
@@ -100,7 +101,7 @@ const AddCoupon = ({ createCoupon, coupon: { loading } }) => {
             value={code}
             onChange={onChange}
             placeholder="Enter Coupon Code.."
-            // ref={register({ required: true })}
+          // ref={register({ required: true })}
           />
           <small className="text-muted">
             Please Enter A Unique Coupon Code.
@@ -135,7 +136,7 @@ const AddCoupon = ({ createCoupon, coupon: { loading } }) => {
             value={discount}
             onChange={onChange}
             placeholder="Enter Discount Value.."
-            // ref={register({ required: true })}
+          // ref={register({ required: true })}
           />
           {/* {value == ' ' && (
             <div className="font-weight-bold text-danger mt-1 mb-0">

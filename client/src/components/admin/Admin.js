@@ -18,6 +18,7 @@ import { connect } from "react-redux";
 import Loader from "./spinner";
 import OrderShow from "./order/OrderShow";
 import ProductShow from "./product/ProductShow";
+import viewSales from "./views/viewSales";
 
 const Admin = ({ getAdmin, adminauth }) => {
   if (localStorage.token && adminauth.isAdmin) {
@@ -80,6 +81,11 @@ const Admin = ({ getAdmin, adminauth }) => {
                       exact
                       path="/admin/orders"
                       component={ViewOrders}
+                    />
+                    <PrivateRoute
+                      exact
+                      path="/admin/sales"
+                      component={viewSales}
                     />
                     <PrivateRoute
                       exact
