@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 
 import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
@@ -9,8 +9,11 @@ import axios from "axios";
 import { OPTIONS } from "../../config/selectConfig";
 import { toast } from "react-toastify";
 import { connect } from "react-redux";
-import { addProduct } from "../../actions/appActions";
-const ProductForm = ({ addProduct, addingProduct }) => {
+import { addProduct, loadDressTypes } from "../../actions/appActions";
+const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptions }) => {
+  useEffect(() => {
+    loadDressTypes();
+  }, []);
   const [images, setImages] = useState([]);
   const [showPicker, setShowPicker] = useState(false);
   const [currentColor, setcurrentColor] = useState("#ffffff");
@@ -102,7 +105,7 @@ const ProductForm = ({ addProduct, addingProduct }) => {
       [e.target.name]: e.target.value,
     });
   };
-
+  const [showSelect, setShowSelect] = useState(true);
   return (
     <div>
       <div className="row">
@@ -169,6 +172,7 @@ const ProductForm = ({ addProduct, addingProduct }) => {
         </div>
         <div className="col-md-4">
           <div className="form-group">
+
             <input
               type="text"
               className="form-control"
@@ -182,23 +186,52 @@ const ProductForm = ({ addProduct, addingProduct }) => {
           </div>
         </div>
         <div className="col-md-4">
-          <div className="form-group">
-            <input
-              type="text"
-              name="dressType"
-              value={data.dressType}
-              onChange={(e) => {
-                setdata({
-                  ...data,
-                  dressType: e.target.value.toString(),
-                });
-              }}
-              // ref={register}
-              required
-              className="form-control"
-              placeholder="Dress Type"
-            />
+          <div className="row">
+            <div className="col-8">
+              <div className="form-group">
+                {showSelect ? <Select
+                  // defaultValue={dressTypeOptions != null && dressTypeOptions[0]}
+
+                  placeholder="Select Body Type.."
+                  name="bodyType"
+                  // innerRef={register}
+                  options={dressTypeOptions != null && dressTypeOptions}
+                  onChange={(value) => {
+
+                    console.log(value);
+                    setdata({
+                      ...data,
+                      dressType: value.value.toString(),
+                    });
+                  }}
+                /> :
+                  <input
+                    type="text"
+                    name="dressType"
+                    value={data.dressType}
+                    onChange={(e) => {
+                      setdata({
+                        ...data,
+                        dressType: e.target.value.toString(),
+                      });
+                    }}
+                    // ref={register}
+                    required
+                    className="form-control"
+                    placeholder="Dress Type"
+                  />}
+
+
+              </div>
+            </div>
+            <div className="col-4 mt-1">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" onChange={(e) => { console.log(e.target.checked); setShowSelect(!e.target.checked) }} />
+                <label class="form-check-label" for="exampleCheck1">Custom</label>
+              </div>
+            </div>
           </div>
+
 
         </div>
         <div className="col-md-6">
@@ -462,5 +495,6 @@ const ProductForm = ({ addProduct, addingProduct }) => {
 };
 const mapStateToProps = (state) => ({
   addingProduct: state.app.addingProduct,
+  dressTypeOptions: state.app.dressTypeOptions,
 });
-export default connect(mapStateToProps, { addProduct })(ProductForm);
+export default connect(mapStateToProps, { addProduct, loadDressTypes })(ProductForm);
