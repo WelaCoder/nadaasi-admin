@@ -24,7 +24,7 @@ const FeedbackItem = ({ feedback, updateFeedback }) => {
     <Fragment>
 
       <div
-        className="d-flex list-group-item py-3  justify-content-between   shadow-sm  mb-2">
+        className="d-flex list-group-item py-3  justify-content-between   shadow-sm  mb-2 px-0">
         <div className="col-md-2">
           <small className="d-flex flex-column">
             <span className="text-muted border-bottom py-1">Name
@@ -44,7 +44,7 @@ const FeedbackItem = ({ feedback, updateFeedback }) => {
             </span>
           </small>
         </div>
-        <div className="col-md-3">
+        <div className="col-md-2">
           <small className="d-flex flex-column ">
             <span className="text-muted border-bottom py-1">
               Email

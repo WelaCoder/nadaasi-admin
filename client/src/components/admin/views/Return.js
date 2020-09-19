@@ -29,7 +29,7 @@ const Return = ({
           <Loader />
         ) : (
             <div className="row">
-              <div className="col-md-10 container ">
+              <div className="col-md-12 container ">
                 <Header heading="Return Requests" item={returnRequest} />
                 {returnRequest.length > 0 ? (
                   <ReturnList returnItems={returnRequest} />

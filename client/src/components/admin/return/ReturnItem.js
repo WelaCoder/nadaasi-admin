@@ -44,7 +44,7 @@ const ReturnItem = ({ returnRequest, updateStatus }) => {
             </span>
           </small>
         </div>
-        <div className="col-md-3">
+        <div className="col-md-2">
           <small className="d-flex flex-column ">
             <span className="text-muted border-bottom py-1">
               Email

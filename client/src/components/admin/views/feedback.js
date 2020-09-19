@@ -41,19 +41,19 @@ const Feedback = ({ getFeedback, feedback: { feedbacks } }) => {
         {feedbacks == null ? (
           <Loader />
         ) : (
-          <div className="row">
-            <div className="col-md-10 container ">
-              <Header heading="User Feedback" item={feedbacks} />
-              <>
-                {feedbacks.length > 0 ? (
-                  <FeedbackList feedbacks={feedbacks} />
-                ) : (
-                  <NotFound message="No Feedback Added from the users." />
-                )}
-              </>
+            <div className="row">
+              <div className="col-md-12 container ">
+                <Header heading="User Feedback" item={feedbacks} />
+                <>
+                  {feedbacks.length > 0 ? (
+                    <FeedbackList feedbacks={feedbacks} />
+                  ) : (
+                      <NotFound message="No Feedback Added from the users." />
+                    )}
+                </>
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     </Container>
   );
