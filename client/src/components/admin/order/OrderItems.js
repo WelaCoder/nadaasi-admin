@@ -21,14 +21,14 @@ const OrderItems = ({ order, captureOrder }) => {
           <Link to={`/admin/orders/${_id}`} style={{ color: "black" }}>
             <small className="d-flex flex-column">
               <span className="text-muted border-bottom py-1">Order Id</span>
-              <span className=" text-capitalize py-1">{orderId} </span>
+              <span className="py-1">{orderId} </span>
             </small>
           </Link>
         </div>
-        <div className="col-md-2">
+        <div className="col-md-3">
           <small className="d-flex flex-column ">
             <span className="text-muted border-bottom py-1 ">Email</span>
-            <span className="text-capitalize py-1">{email}</span>
+            <span className=" py-1">{email}</span>
           </small>
         </div>
         <div className="col-md-3">

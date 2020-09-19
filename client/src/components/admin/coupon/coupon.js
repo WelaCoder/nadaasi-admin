@@ -24,7 +24,7 @@ const Coupon = ({ coupon, updateCoupon }) => {
         <div className="col-md-2">
           <small className="d-flex flex-column ">
             <span className="text-muted border-bottom py-1 ">Coupon Code</span>
-            <span className="text-capitalize py-1">{code}</span>
+            <span className="py-1">{code}</span>
           </small>
         </div>
         <div className="col-md-3">
