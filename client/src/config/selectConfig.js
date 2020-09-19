@@ -38,6 +38,10 @@ export const OPTIONS = {
   ],
   orderStatusOptions: [
     {
+      value: "Pending",
+      label: "Pending",
+    },
+    {
       value: "Accepted",
       label: "Accepted",
     },
