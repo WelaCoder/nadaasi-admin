@@ -36,6 +36,16 @@ export const OPTIONS = {
       label: "Evening",
     },
   ],
+  discountTypeOptions: [
+    {
+      value: "Amount",
+      label: "Amount",
+    },
+    {
+      value: "Percentage",
+      label: "Percentage",
+    },
+  ],
   orderStatusOptions: [
     {
       value: "Pending",
