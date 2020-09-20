@@ -187,7 +187,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
         </div>
         <div className="col-md-4">
           <div className="row">
-            <div className="col-8">
+            <div className="col-8 pr-1">
               <div className="form-group">
                 {showSelect ? <Select
                   // defaultValue={dressTypeOptions != null && dressTypeOptions[0]}
@@ -224,7 +224,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
 
               </div>
             </div>
-            <div className="col-4 mt-1">
+            <div className="col-4 mt-1 p-0">
               <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1" onChange={(e) => { console.log(e.target.checked); setShowSelect(!e.target.checked) }} />
                 <label class="form-check-label" for="exampleCheck1">Custom</label>
