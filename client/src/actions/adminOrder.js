@@ -21,10 +21,10 @@ export const getAllAdminOrders = () => async (dispatch) => {
 
 
 
-export const captureOrder = (id, status) => async (dispatch) => {
+export const captureOrder = (id, status, manufacturer) => async (dispatch) => {
     try {
         console.log(status);
-        const res = await axios.post(`${API}/api/order/${id}/captureOrder`, { status }, {
+        const res = await axios.post(`${API}/api/order/${id}/captureOrder`, { status, manufacturer }, {
             headers: {
                 "Content-Type": "application/json",
             },

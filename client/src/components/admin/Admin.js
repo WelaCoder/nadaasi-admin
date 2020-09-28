@@ -19,6 +19,8 @@ import Loader from "./spinner";
 import OrderShow from "./order/OrderShow";
 import ProductShow from "./product/ProductShow";
 import viewSales from "./views/viewSales";
+import addManufacturer from "./views/addManufacturer";
+import ViewManufacturers from "./views/ViewManufacturers";
 
 const Admin = ({ getAdmin, adminauth }) => {
   if (localStorage.token && adminauth.isAdmin) {
@@ -76,6 +78,16 @@ const Admin = ({ getAdmin, adminauth }) => {
                       exact
                       path="/admin/add-coupon"
                       component={AddCoupon}
+                    />
+                    <PrivateRoute
+                      exact
+                      path="/admin/add-manufacturer"
+                      component={addManufacturer}
+                    />
+                    <PrivateRoute
+                      exact
+                      path="/admin/manufacturers"
+                      component={ViewManufacturers}
                     />
                     <PrivateRoute
                       exact

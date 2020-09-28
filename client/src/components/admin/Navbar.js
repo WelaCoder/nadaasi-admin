@@ -88,6 +88,28 @@ const Appbar = ({ adminLogOut }) => {
                 </NavLink>
             </MenuItem>
           </SubMenu>
+          <SubMenu title="Manufacturers" icon={<FeatherIcon icon="archive" />}>
+            <MenuItem>
+              <NavLink
+
+                activeClassName="text-light font-weight-bold "
+                tag={RRNavLink}
+                to="/admin/add-manufacturer"
+              >
+                Add Manufacturer
+                </NavLink>
+            </MenuItem>
+            <MenuItem>
+              <NavLink
+
+                activeClassName="text-light font-weight-bold "
+                tag={RRNavLink}
+                to="/admin/manufacturers"
+              >
+                Manufacturers
+                </NavLink>
+            </MenuItem>
+          </SubMenu>
           <MenuItem icon={<FeatherIcon icon="truck" />}>
             <NavLink
 

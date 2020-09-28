@@ -6,6 +6,7 @@ import auth from "./auth"
 import adminauth from "./adminauth"
 import coupon from "./coupon"
 import feedback from "./feedback"
+import manufacturer from "./manufacturer"
 import MerchantReturn from "./merchantReturn"
 export default combineReducers({
   app: appReducer,
@@ -15,5 +16,5 @@ export default combineReducers({
   adminauth,
   feedback,
   MerchantReturn,
-  
+  manufacturer,
 });
