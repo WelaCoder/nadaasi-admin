@@ -192,7 +192,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
                 {showSelect ? <Select
                   // defaultValue={dressTypeOptions != null && dressTypeOptions[0]}
 
-                  placeholder="Select Body Type.."
+                  placeholder="Select Dress Type.."
                   name="bodyType"
                   // innerRef={register}
                   options={dressTypeOptions != null && dressTypeOptions}
