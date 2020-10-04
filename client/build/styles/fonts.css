@@ -1,0 +1,19 @@
+@font-face {
+  font-family: FuturaMdBT;
+  src: url(../fonts/futura/futura-medium-bt.ttf);
+}
+
+@font-face {
+  font-family: FuturaLtBT;
+  src: url(../fonts/futura/futura-light-bt.ttf);
+}
+
+@font-face {
+  font-family: FuturaBkBT;
+  src: url(../fonts/futura/Futura-Book-font.ttf);
+}
+
+@font-face {
+  font-family: OldStandardRegular;
+  src: url(../fonts/Old-Standard-TT/OldStandard-Regular.ttf);
+}
