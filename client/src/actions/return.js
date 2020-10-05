@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API } from "../constants/constants";
-import { GET_MARCHANT_RETURN_REQUEST, CREATE_REQUEST, CLEAR_RETURN_ISSUE, ERROR, SET_TOAST } from './types'
+import { GET_MARCHANT_RETURN_REQUEST, CREATE_REQUEST, CLEAR_RETURN_ISSUE, ERROR, SET_TOAST, SET_CURRENT_RETURN } from './types'
 import { toast } from 'react-toastify'
 export const returnMerchant = ({ name, orderId, email, problem }) => async (dispatch) => {
     try {
@@ -49,3 +49,21 @@ export const updateStatus = (id, data) => async (dispatch) => {
         })
     }
 }
+
+export const setCurrentReturn = (returnId) => async (dispatch) => {
+    try {
+        console.log("getting order");
+        console.log(returnId);
+        dispatch({
+            type: SET_CURRENT_RETURN,
+            payload: null,
+        });
+        const res = await axios.get(`${API}/api/merchantreturn/${returnId}`);
+        dispatch({
+            type: SET_CURRENT_RETURN,
+            payload: res.data,
+        });
+    } catch (error) {
+        console.log(error);
+    }
+};

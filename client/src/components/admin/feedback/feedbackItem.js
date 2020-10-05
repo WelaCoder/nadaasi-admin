@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import Toggle from 'react-toggle';
 import { connect } from 'react-redux';
 import { updateFeedback } from '../../../actions/feedback'
-
+import Star from '../../../assets/images/home/icons/star.svg'
 const FeedbackItem = ({ feedback, updateFeedback }) => {
   const {
     _id,
@@ -34,47 +34,42 @@ const FeedbackItem = ({ feedback, updateFeedback }) => {
             </span>
           </small>
         </div>
-        <div className="col-md-2">
+        <div className="col-md-3">
           <small className="d-flex flex-column ">
             <span className="text-muted border-bottom py-1 ">
-              Subject
+              Title
             </span>
             <span className="text-capitalize py-1">
-              {subject}
+              {feedback.text}
             </span>
           </small>
         </div>
-        <div className="col-md-2">
+        <div className="col-md-3">
           <small className="d-flex flex-column ">
             <span className="text-muted border-bottom py-1">
-              Email
+              Detail
             </span>
             <span className=" py-1">
-              {email}
+              {feedback.detail}
             </span>
           </small>
         </div>
+
         <div className="col-md-2">
           <small className="d-flex flex-column ">
             <span className="text-muted py-1 border-bottom">
-              Message
+              Rating
             </span>
             <span className="py-1">
-              {message}
+              <span>
+                {new Array(feedback.rating).fill().map((_, idx) => (
+                  <img key={idx} className="ml-2" width="10px" src={Star} alt="star" />
+                ))}
+              </span>
             </span>
           </small>
         </div>
-        <div className="col-md-2">
-          <small className="d-flex flex-column ">
-            <span className="text-muted py-1 border-bottom">
-              Phone
-            </span>
-            <span className="py-1">
-              {phone}
-            </span>
-          </small>
-        </div>
-        <div className="col-md-2">
+        {/* <div className="col-md-2">
           <small className="d-flex flex-column">
             <span className="text-muted border-bottom py-1 ">
               IsResolved
@@ -89,7 +84,7 @@ const FeedbackItem = ({ feedback, updateFeedback }) => {
               />
             </span>
           </small>
-        </div>
+        </div> */}
       </div>
     </Fragment>
   )

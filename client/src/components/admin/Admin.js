@@ -21,6 +21,7 @@ import ProductShow from "./product/ProductShow";
 import viewSales from "./views/viewSales";
 import addManufacturer from "./views/addManufacturer";
 import ViewManufacturers from "./views/ViewManufacturers";
+import returnShow from "./return/returnShow";
 
 const Admin = ({ getAdmin, adminauth }) => {
   if (localStorage.token && adminauth.isAdmin) {
@@ -73,6 +74,11 @@ const Admin = ({ getAdmin, adminauth }) => {
                       exact
                       path="/admin/merchant"
                       component={Return}
+                    />
+                    <PrivateRoute
+                      exact
+                      path="/admin/merchant/:id"
+                      component={returnShow}
                     />
                     <PrivateRoute
                       exact

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import Toggle from 'react-toggle';
 import { connect } from 'react-redux';
 import { updateStatus } from '../../../actions/return'
+import { Link } from 'react-router-dom';
 
 const ReturnItem = ({ returnRequest, updateStatus }) => {
   const {
@@ -25,16 +26,18 @@ const ReturnItem = ({ returnRequest, updateStatus }) => {
 
       <div
         className="d-flex list-group-item py-3  justify-content-between   shadow-sm  mb-2">
-        <div className="col-md-2">
-          <small className="d-flex flex-column">
-            <span className="text-muted border-bottom py-1">Name
+        <div className="col-md-4">
+          <Link to={`/admin/merchant/${_id}`} style={{ color: 'black' }}>
+            <small className="d-flex flex-column">
+              <span className="text-muted border-bottom py-1">Name
             </span>
-            <span className=" text-capitalize py-1">
-              {name}
-            </span>
-          </small>
+              <span className=" text-capitalize py-1">
+                {name}
+              </span>
+            </small>
+          </Link>
         </div>
-        <div className="col-md-2">
+        <div className="col-md-4">
           <small className="d-flex flex-column ">
             <span className="text-muted border-bottom py-1 ">
               order_Id
@@ -44,7 +47,7 @@ const ReturnItem = ({ returnRequest, updateStatus }) => {
             </span>
           </small>
         </div>
-        <div className="col-md-2">
+        {/* <div className="col-md-2">
           <small className="d-flex flex-column ">
             <span className="text-muted border-bottom py-1">
               Email
@@ -53,8 +56,8 @@ const ReturnItem = ({ returnRequest, updateStatus }) => {
               {email}
             </span>
           </small>
-        </div>
-        <div className="col-md-2">
+        </div> */}
+        {/* <div className="col-md-2">
           <small className="d-flex flex-column ">
             <span className="text-muted py-1 border-bottom">
               Message
@@ -73,8 +76,8 @@ const ReturnItem = ({ returnRequest, updateStatus }) => {
               {phone}
             </span>
           </small>
-        </div>
-        <div className="col-md-2">
+        </div> */}
+        <div className="col-md-3">
           <small className="d-flex flex-column">
             <span className="text-muted border-bottom py-1 ">
               IsResolved

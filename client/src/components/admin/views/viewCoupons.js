@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from "react";
-// import axios from "axios";
-
 import { Container } from "reactstrap";
-// import { useIsAdmin } from "../hooks/useIsAdmin";
 import Loader from "../spinner";
-// import { setAuthorizationToken } from "../helpers/utils";
 import NotFound from "../NotFound";
 import Header from "../header";
 import { connect } from "react-redux";
 import CouponList from "../coupon/couponList";
 import { getAllCoupons } from "../../../actions/coupon";
-// export const stringTruncate = (str, length) => {
-//   const dots = str.length > length ? "..." : "";
-//   return `${str.substring(0, length)}${dots}`;
-// };
+
 const ViewCoupon = ({ getAllCoupons, coupon: { coupons } }) => {
   // const [feedback, setFeedback] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -41,19 +34,19 @@ const ViewCoupon = ({ getAllCoupons, coupon: { coupons } }) => {
         {coupons == null ? (
           <Loader />
         ) : (
-          <div className="row">
-            <div className="col-md-10 container">
-              <Header heading="Coupons" item={coupons} />
-              <>
-                {coupons.length > 0 ? (
-                  <CouponList coupons={coupons} />
-                ) : (
-                  <NotFound message="No Feedback Added from the users." />
-                )}
-              </>
+            <div className="row">
+              <div className="col-md-10 container">
+                <Header heading="Coupons" item={coupons} />
+                <>
+                  {coupons.length > 0 ? (
+                    <CouponList coupons={coupons} />
+                  ) : (
+                      <NotFound message="No Coupons Added yet..." />
+                    )}
+                </>
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     </Container>
   );
