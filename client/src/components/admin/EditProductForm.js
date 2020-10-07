@@ -243,8 +243,9 @@ const EditProductForm = ({ addingProduct, loadDressTypes, dressTypeOptions, setC
                             value={data.price}
                             onChange={onChange}
                             required
-                            placeholder="Price"
+                            placeholder="€ 0.00"
                         />
+                        <p className="small text-muted">Enter price in Euro</p>
                     </div>
                 </div>
                 <div className="col-md-4">

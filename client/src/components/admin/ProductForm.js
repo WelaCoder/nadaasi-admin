@@ -213,8 +213,9 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
               onChange={onChange}
               required
               // ref={register}
-              placeholder="Price"
+              placeholder="€ 0.00"
             />
+            <p className="small text-muted">Enter price in Euro</p>
           </div>
         </div>
         <div className="col-md-4">
