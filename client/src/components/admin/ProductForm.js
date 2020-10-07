@@ -35,6 +35,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
     waistLine: "",
     details: "",
     modelHeightSize: "",
+    stock: "",
     inStock: true,
   });
 
@@ -55,23 +56,53 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
 
   const onSubmit = async () => {
     // e.preventDefault();
-    if (
-      data.price == "" ||
-      data.length == "" ||
-      data.neckLine == "" ||
-      data.waistLine == "" ||
-      data.details == "" ||
-      data.modelHeightSize == "" ||
-      data.name == "" ||
-      data.dressType == "" ||
-      data.fabric == "" ||
-      data.closure == "" ||
-      data.dressSize.length < 1 ||
-      data.dressColor.length < 1 ||
-      images.length < 1 ||
-      data.bodyType.length < 1
-    ) {
-      toast.error("Please enter all fields for the dress.");
+    if (String(data.price) == "") {
+      toast.error("Please enter price for the dress.");
+      return;
+    } else if (data.neckLine == "") {
+      toast.error("Please enter neck line for the dress.");
+      return;
+    } else if (data.waistLine == "") {
+      toast.error("Please enter waist line for the dress.");
+      return;
+    }
+    else if (data.details == "") {
+      toast.error("Please enter details for the dress.");
+      return;
+    }
+    else if (data.modelHeightSize == "") {
+      toast.error("Please enter model height and size for the dress.");
+      return;
+    }
+    else if (data.name == "") {
+      toast.error("Please enter name for the dress.");
+      return;
+    }
+    else if (data.dressType == "") {
+      toast.error("Please enter dress type for the dress.");
+      return;
+    }
+    else if (data.fabric == "") {
+      toast.error("Please enter fabric for the dress.");
+      return;
+    }
+    else if (data.closure == "") {
+      toast.error("Please enter closure for the dress.");
+      return;
+    }
+    else if (data.dressSize.length < 1) {
+      toast.error("Please enter dress size for the dress.");
+      return;
+    }
+    else if (data.dressColor.length < 1) {
+      toast.error("Please enter dress color for the dress.");
+      return;
+    }
+    else if (data.bodyType.length < 1) {
+      toast.error("Please enter body type for the dress.");
+      return;
+    } else if (placeholder.length < 1) {
+      toast.error("Please images for the dress.");
       return;
     }
     setIsLoading(true);
@@ -92,6 +123,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
     product.append("waistline", data.waistLine);
     product.append("modelHeightSize", data.modelHeightSize);
     product.append("bodyType", data.bodyType);
+    product.append("stock", data.stock);
 
     console.log("submitted");
     console.log(data);
@@ -271,6 +303,21 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
                     bodyType: values.map((value) => value.value),
                   });
               }}
+            />
+          </div>
+        </div>
+
+        <div className="col-md-6">
+          <div className="form-group">
+            <input
+              name="stock"
+              value={data.stock}
+              onChange={onChange}
+              // required
+              // ref={register}
+              type="text"
+              className="form-control"
+              placeholder="Enter Stock"
             />
           </div>
         </div>

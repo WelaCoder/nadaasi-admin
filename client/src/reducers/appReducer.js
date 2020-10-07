@@ -21,6 +21,7 @@ import {
   LOAD_DRESS_TYPES,
   SET_CURRENT_PAGE,
   SET_CURRENT_RETURN,
+  SET_CURRENT_MANUFACTURER
 } from "../actions/types";
 import { toast } from "react-toastify";
 const initialState = {
@@ -55,9 +56,15 @@ const initialState = {
   currentPage: 1,
   dressTypeOptions: null,
   currentReturn: null,
+  currentManufacturer: null,
 };
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SET_CURRENT_MANUFACTURER:
+      return {
+        ...state,
+        currentManufacturer: action.payload,
+      }
     case SET_CURRENT_RETURN:
       return {
         ...state,

@@ -30,6 +30,18 @@ export const addProduct = (data) => async (dispatch) => {
   }
 };
 
+
+export const editProduct = (data, id) => async (dispatch) => {
+  try {
+    console.log(`${API}/api/product/${id}`);
+    const res = await axios.post(`${API}/api/product/${id}`, data);
+
+    return true;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getProducts = () => async (dispatch) => {
   try {
     dispatch({

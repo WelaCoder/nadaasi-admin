@@ -4,7 +4,8 @@ import Loader from "../spinner";
 
 import { setCurrentOrder, loadOrders } from "../../../actions/orders";
 import { setCurrentProduct } from "../../../actions/appActions";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import editIcon from '../../../assets/images/home/icons/edit.svg';
 import { API } from "../../../constants/constants";
 const ProductShow = ({ currentProduct, setCurrentProduct }) => {
   let params = useParams();
@@ -23,6 +24,7 @@ const ProductShow = ({ currentProduct, setCurrentProduct }) => {
     dressType,
     _id,
   } = currentProduct;
+
   return (
     <div>
       {" "}
@@ -33,9 +35,11 @@ const ProductShow = ({ currentProduct, setCurrentProduct }) => {
               border-bottom py-1 mb-2"
       >
         <h3 className="mb-0 font-weight-bold text-info">Product</h3>
-        {/* <span className='badge badge-info badge-pill shadow-sm p-2'>
-        Totals {heading}: {item.length}
-      </span> */}
+        <Link to={`/admin/products/${_id}/edit`}>
+          <span className='badge badge-info badge-pill shadow-sm p-2'>
+            Edit <img src={editIcon} alt="" className='ml-1' style={{ height: '16px', width: '16px' }} />
+          </span>
+        </Link>
       </div>
       <div
         className="d-flex list-group-item py-3 
@@ -53,7 +57,7 @@ shadow-sm  mb-2"
             <div class="col-md-7">{currentProduct.name}</div>
           </div>
           <div class="row py-2 text-muted border-bottom">
-            <div class="col-md-5">Order ID</div>
+            <div class="col-md-5">Images</div>
             <div class="col-md-7"><div>
               {images.map((image, idx) => (
                 <img

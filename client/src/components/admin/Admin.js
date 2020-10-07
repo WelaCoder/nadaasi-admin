@@ -22,6 +22,8 @@ import viewSales from "./views/viewSales";
 import addManufacturer from "./views/addManufacturer";
 import ViewManufacturers from "./views/ViewManufacturers";
 import returnShow from "./return/returnShow";
+import EditProductForm from "./EditProductForm";
+import editManufacturer from "./views/editManufacturer";
 
 const Admin = ({ getAdmin, adminauth }) => {
   if (localStorage.token && adminauth.isAdmin) {
@@ -72,6 +74,11 @@ const Admin = ({ getAdmin, adminauth }) => {
                     />
                     <PrivateRoute
                       exact
+                      path="/admin/products/:id/edit"
+                      component={EditProductForm}
+                    />
+                    <PrivateRoute
+                      exact
                       path="/admin/merchant"
                       component={Return}
                     />
@@ -94,6 +101,11 @@ const Admin = ({ getAdmin, adminauth }) => {
                       exact
                       path="/admin/manufacturers"
                       component={ViewManufacturers}
+                    />
+                    <PrivateRoute
+                      exact
+                      path="/admin/manufacturers/:id"
+                      component={editManufacturer}
                     />
                     <PrivateRoute
                       exact
