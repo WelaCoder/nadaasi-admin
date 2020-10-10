@@ -164,7 +164,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
         <div className="col-md-12 d-flex justify-content-between">
           <h3 className="mb-0 font-weight-bold text-info">Upload Product</h3>
           <div className="d-flex justify-content-end align-items-center">
-            <span className="mr-2">In Stock</span>
+            <span className="mr-2">In Shop</span>
             <Toggle
               id="123"
               defaultChecked={inStock}

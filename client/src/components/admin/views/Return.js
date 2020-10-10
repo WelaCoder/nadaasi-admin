@@ -34,7 +34,7 @@ const Return = ({
                 {returnRequest.length > 0 ? (
                   <ReturnList returnItems={returnRequest} />
                 ) : (
-                    <NotFound message="No Active Coupons." />
+                    <NotFound message="No Return Requests Yet." />
                   )}
               </div>
             </div>
