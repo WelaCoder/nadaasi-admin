@@ -24,7 +24,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
     images: [],
     name: "",
     price: "",
-    dressType: "",
+    dressType: null,
     dressSize: [],
     bodyType: [],
     dressColor: [],
@@ -40,7 +40,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
   });
 
   const [placeholder, setPlaceHolder] = useState([]);
-
+  const [inputValues, setValues] = useState({});
   const onDrop = useCallback((acceptedFiles) => {
     const placeholderArray = [];
     setImages(acceptedFiles);
@@ -124,7 +124,27 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
     product.append("modelHeightSize", data.modelHeightSize);
     product.append("bodyType", data.bodyType);
     product.append("stock", data.stock);
-
+    setdata({
+      images: [],
+      name: "",
+      price: "",
+      dressType: null,
+      dressSize: [],
+      bodyType: [],
+      dressColor: [],
+      fabric: "",
+      closure: "",
+      length: "",
+      neckLine: "",
+      waistLine: "",
+      details: "",
+      modelHeightSize: "",
+      stock: "",
+      inStock: true,
+    });
+    setPlaceHolder([]);
+    setImages([]);
+    setValues({ dressType: null, dressSize: [], bodyType: [], });
     console.log("submitted");
     console.log(data);
     let success = await addProduct(product);
@@ -224,13 +244,14 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
               <div className="form-group">
                 {showSelect ? <Select
                   // defaultValue={dressTypeOptions != null && dressTypeOptions[0]}
-
+                  // value={{ label: "label", value: "value" }}
                   placeholder="Select Dress Type.."
                   name="bodyType"
                   // innerRef={register}
+                  value={inputValues.dressType}
                   options={dressTypeOptions != null && dressTypeOptions}
                   onChange={(value) => {
-
+                    setValues({ ...inputValues, dressType: value })
                     console.log(value);
                     setdata({
                       ...data,
@@ -274,6 +295,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
               isMulti
               placeholder="Select Dress Size.."
               name="colors"
+              value={inputValues.dressSize}
               // innerRef={register}
               options={OPTIONS.dressSizeOptions}
               onChange={(values) => {
@@ -283,6 +305,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
                     // dressColor: "value",
                     dressSize: values.map((value) => value.value),
                   });
+                setValues({ ...inputValues, dressSize: values })
               }}
             />
           </div>
@@ -295,6 +318,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
               placeholder="Select Body Type.."
               name="bodyType"
               // innerRef={register}
+              value={inputValues.bodyType}
               options={OPTIONS.bodyTypeOptions}
               onChange={(values) => {
                 values !== null &&
@@ -303,6 +327,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
                     // dressColor: "value",
                     bodyType: values.map((value) => value.value),
                   });
+                setValues({ ...inputValues, bodyType: values, })
               }}
             />
           </div>
@@ -464,7 +489,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
               <div className="form-group">
                 <input
                   name="neckLine"
-                  value={data.neckline}
+                  value={data.neckLine}
                   onChange={onChange}
                   required
                   // ref={register}
@@ -479,7 +504,7 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
                 <input
                   name="waistLine"
                   // ref={register}
-                  value={data.waistline}
+                  value={data.waistLine}
                   onChange={onChange}
                   required
                   type="text"
@@ -520,22 +545,23 @@ const ProductForm = ({ addProduct, addingProduct, loadDressTypes, dressTypeOptio
         </div>
 
         <div className="col-md-12 ">
-          <a
+          <button
             href={"#!"}
             type="submit"
             onClick={onSubmit}
             className="btn btn-block btn-dark mb-2"
-            disabled={addingProduct}
+            disabled={isLoading}
           >
             <span
               className={
                 isLoading ? "mr-2 spinner-border spinner-border-sm" : ""
               }
+
               role="status"
               aria-hidden="true"
             ></span>
             {isLoading ? "Uploading..." : "Upload"}
-          </a>
+          </button>
         </div>
       </div>
     </div>
