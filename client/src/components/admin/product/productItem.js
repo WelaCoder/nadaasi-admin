@@ -43,8 +43,10 @@ const ProductItem = ({ product, setProductInStock }) => {
                 </div>
                 <div>
                   {images.map((image, idx) => (
+                    // <></>
                     <img
                       key={idx}
+                      // style={{ imageResolution: '72dpi' }}
                       class="sm-category rounded-lg mr-2"
                       src={`${API}/uploads/${image}`}
                       alt={image}
@@ -78,7 +80,7 @@ const ProductItem = ({ product, setProductInStock }) => {
                 <h5 class=" text-success font-weight-bold">￡ {price}</h5>
               </div>
               <div class="font-weight-bold d-flex mt-2">
-                <span className="mr-1">In Stock</span>
+                <span className="mr-1">In Shop</span>
                 <Toggle
                   defaultChecked={inStock}
                   onChange={() => {
