@@ -43,14 +43,14 @@ const ProductItem = ({ product, setProductInStock }) => {
                 </div>
                 <div>
                   {images.map((image, idx) => (
-                    // <></>
-                    <img
-                      key={idx}
-                      // style={{ imageResolution: '72dpi' }}
-                      class="sm-category rounded-lg mr-2"
-                      src={`${API}/uploads/${image}`}
-                      alt={image}
-                    />
+                    <></>
+                    // <img
+                    //   key={idx}
+                    //   // style={{ imageResolution: '72dpi' }}
+                    //   class="sm-category rounded-lg mr-2"
+                    //   src={`${API}/uploads/${image}`}
+                    //   alt={image}
+                    // />
                   ))}
                 </div>
               </div>

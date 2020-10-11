@@ -48,7 +48,7 @@ export const getProducts = () => async (dispatch) => {
       type: SET_LOADING,
       payload: true,
     });
-    const res = await axios.get(`${API}/api/product`);
+    const res = await axios.get(`${API}/api/product/admin`);
     console.log(res.data.products);
     dispatch({
       type: GET_PRODUCTS,
