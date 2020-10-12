@@ -17,7 +17,7 @@ import {
   SORT_PRODUCTS,
   SET_CURRENT_PAGE,
   LOAD_DRESS_TYPES,
-  GET_CURRENT_PRODUCT, SET_SALE
+  GET_CURRENT_PRODUCT, SET_SALE, DELETE_PRODUCT
 } from "./types";
 
 export const addProduct = (data) => async (dispatch) => {
@@ -221,6 +221,25 @@ export const deleteItemFromCart = (id) => async (dispatch) => {
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+
+export const deleteProduct = (id) => async (dispatch) => {
+  try {
+    let proceed =  window.confirm('Are you sure you want to delete this product?');
+    if (!proceed) return ;
+    const res = await axios.delete(`${API}/api/product/${id}` );
+
+    // dispatch({
+    //   type: DELETE_PRODUCT,
+    //   payload: res.data,
+    // });
+    toast.success('Successfully deleted product...')
+    return true;
+  } catch (error) {
+    console.log(error);
+    return  false;
   }
 };
 

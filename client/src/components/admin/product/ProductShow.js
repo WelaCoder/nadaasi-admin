@@ -3,12 +3,14 @@ import { connect } from "react-redux";
 import Loader from "../spinner";
 
 import { setCurrentOrder, loadOrders } from "../../../actions/orders";
-import { setCurrentProduct } from "../../../actions/appActions";
-import { Link, useParams } from "react-router-dom";
+import { deleteProduct, setCurrentProduct } from "../../../actions/appActions";
+import { Link, useHistory, useParams } from "react-router-dom";
 import editIcon from '../../../assets/images/home/icons/edit.svg';
+import trashIcon from '../../../assets/images/home/icons/trash.svg';
 import { API } from "../../../constants/constants";
-const ProductShow = ({ currentProduct, setCurrentProduct }) => {
+const ProductShow = ({ currentProduct, setCurrentProduct ,deleteProduct}) => {
   let params = useParams();
+  let history = useHistory();
   useEffect(() => {
     setCurrentProduct(params.id);
   }, []);
@@ -35,11 +37,25 @@ const ProductShow = ({ currentProduct, setCurrentProduct }) => {
               border-bottom py-1 mb-2"
       >
         <h3 className="mb-0 font-weight-bold text-info">Product</h3>
+        <div className="d-flex justify-content-center">
+
         <Link to={`/admin/products/${_id}/edit`}>
           <span className='badge badge-info badge-pill shadow-sm p-2'>
             Edit <img src={editIcon} alt="" className='ml-1' style={{ height: '16px', width: '16px' }} />
           </span>
         </Link>
+
+        <div to={`/admin/products/${_id}/edit`} style={{cursor: 'pointer'}} className='ml-1' onClick={async ()=>{
+         let result =  await deleteProduct(_id);
+         if (result) {
+           history.push('/admin/products');
+         }
+        }}>
+          <span className='badge badge-danger badge-pill shadow-sm p-2'>
+            Delete <img src={trashIcon} alt="" className='ml-1' style={{ height: '16px', width: '16px' }} />
+          </span>
+        </div>
+        </div>
       </div>
       <div
         className="d-flex list-group-item py-3 
@@ -152,6 +168,6 @@ shadow-sm  mb-2"
 const mapStateToProps = (state) => ({
   currentProduct: state.adminOrder.currentProduct,
 });
-export default connect(mapStateToProps, { setCurrentProduct })(
+export default connect(mapStateToProps, { setCurrentProduct ,deleteProduct})(
   ProductShow
 );

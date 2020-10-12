@@ -21,7 +21,8 @@ import {
   LOAD_DRESS_TYPES,
   SET_CURRENT_PAGE,
   SET_CURRENT_RETURN,
-  SET_CURRENT_MANUFACTURER
+  SET_CURRENT_MANUFACTURER,
+  DELETE_PRODUCT
 } from "../actions/types";
 import { toast } from "react-toastify";
 const initialState = {
@@ -267,6 +268,11 @@ export default (state = initialState, action) => {
           ...action.payload,
         },
       };
+    case DELETE_PRODUCT: 
+    return {
+      ...state,
+      products: state.products.filter(p=>p._id!==action.payload._id)
+    }
     default:
       return state;
   }
