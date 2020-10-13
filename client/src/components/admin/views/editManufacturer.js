@@ -9,10 +9,11 @@ import { connect } from "react-redux";
 import { addManufacturer, editManufacturer, setCurrentManufacturer, } from "../../../actions/manufacturer_actions";
 import Toggle from "react-toggle";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Loader from "../spinner";
 const AddManufacturer = ({ currentManufacturer, setCurrentManufacturer, editManufacturer }) => {
     let id = useParams().id;
+    let history = useHistory();
     useEffect(() => {
         setCurrentManufacturer(id);
     }, []);
@@ -41,6 +42,7 @@ const AddManufacturer = ({ currentManufacturer, setCurrentManufacturer, editManu
         setisLoading(true);
         await editManufacturer({ name, email }, currentManufacturer._id);
         setisLoading(false);
+        history.push('/admin/manufacturers');
     };
     if (currentManufacturer == null) return <Loader />
     return (

@@ -83,8 +83,8 @@ const ProductItem = ({ product, setProductInStock }) => {
                 <span className="mr-1">In Shop</span>
                 <Toggle
                   defaultChecked={inStock}
-                  onChange={() => {
-                    setProductInStock(_id, !inStock);
+                  onChange={(e) => {
+                    setProductInStock(_id, e.target.checked);
                   }}
                 />
               </div>

@@ -32,6 +32,10 @@ const AddManufacturer = ({ createCoupon, coupon: { loading }, history, addManufa
         // createCoupon({ name, code, discount, discountType, isActive });
         await addManufacturer({ name, email });
         setisLoading(false);
+        setcoupondata({
+            name: "",
+            email: "",
+        });
     };
     return (
         <div className="container mt-4">
