@@ -20,6 +20,9 @@ export const addManufacturer = (body) => async (dispatch) => {
             payload: res.data,
         })
     } catch (error) {
+        if(error.response.data.message){
+            toast.error(error.response.data.message);
+        }
         dispatch({
             type: ERROR
         })
