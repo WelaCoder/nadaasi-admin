@@ -1,7 +1,7 @@
 export const OPTIONS = {
   dressSizeOptions: [
     {
-      value: "SM",
+      value: "S",
       label: "Small",
     },
     {
@@ -71,7 +71,6 @@ export const OPTIONS = {
       value: "Recieved",
       label: "Recieved",
     },
-
   ],
   bodyTypeOptions: [
     {
